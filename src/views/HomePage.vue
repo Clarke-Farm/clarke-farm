@@ -1,14 +1,20 @@
 <template>
-    <HeroLandingPage/>
+<div>
+   <HeroLandingPage />
+  <AboutSection />
+</div>
+ 
 </template>
 
 <script>
-import HeroLandingPage from '@/components/HeroLanding.vue';
+import HeroLandingPage from "@/components/HeroLanding.vue";
+import AboutSection from "@/components/AboutSection.vue";
 
 export default {
-  name: 'HomePage',
+  name: "HomePage",
   components: {
     HeroLandingPage,
+    AboutSection,
   },
 };
 </script>
