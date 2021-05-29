@@ -5,26 +5,31 @@
     </div>
     <div class="container-right">
       <div class="top-row">
-        <AdminHeadingHome heading="Home"/>
+        <AdminHeadingSettings heading="Settings"/>
       </div>
       <div class="after-toprow">
-       <HomeContent/>
-       <div class="pagination">
+       <SettingsContent/>
+      </div>
+      <div class="content-table">
+        <SettingsTable/>
+        <div class="pagination">
         <Pagination />
       </div>
       </div>
+
     </div>
   </div>
 </template>
 
 <script>
 import AdminSideNavigation from '@/components/AdminSideNavigation.vue';
-import AdminHeadingHome from '@/components/dashboard/AdminHeadingHome.vue';
-import HomeContent from '@/components/dashboard/HomeContent.vue';
+import AdminHeadingSettings from '@/components/dashboard/AdminHeadingSettings.vue';
+import SettingsContent from '@/components/dashboard/SettingsContent.vue';
+import SettingsTable from '@/components/dashboard/SettingsTableAccommodation.vue';
 import Pagination from '@/components/pagination.vue';
 
 export default {
-  name: 'Admin',
+  name: 'Accommodation',
   data() {
     return {
     };
@@ -32,8 +37,9 @@ export default {
 
   components: {
     AdminSideNavigation,
-    AdminHeadingHome,
-    HomeContent,
+    AdminHeadingSettings,
+    SettingsContent,
+    SettingsTable,
     Pagination,
   },
 };
@@ -43,7 +49,6 @@ export default {
 .container {
   width: 98vw;
   margin-top: 0;
-  margin-bottom:10vw;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -53,9 +58,6 @@ export default {
 .top-row {
   position: relative;
   padding-top: 5px;
-  margin-top: 0px;
-  margin-left: -5%;
-  margin-right: 0%;
 }
 .container-left {
   width: 13vw;
@@ -65,22 +67,16 @@ export default {
   left: 0;
   background-color: #ffffff;
   color: white;
-  margin-left: 8.9%;
+  margin-left:  8.9%;
 }
-
-  .after-toprow{
-    margin-right:0px;
-    margin-left:-5px;
-  }
-
-  .container-right {
-  margin-left: 10vw;
+.container-right {
+  margin-left: 6vw;
   width: 80vw;
 }
 .pagination {
-  width:auto;
+  width:500px;
    margin-top:3%;
-   margin-left:5%;
+   margin-left:7%;
 }
 
 </style>

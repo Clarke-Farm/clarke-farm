@@ -10,6 +10,9 @@
       <div class="after-toprow">
        <ReviewContent/>
       </div>
+      <div class="pagination">
+        <Pagination />
+      </div>
 
     </div>
   </div>
@@ -19,6 +22,7 @@
 import AdminSideNavigation from '@/components/AdminSideNavigation.vue';
 import AdminHeadingReviews from '@/components/dashboard/AdminHeadingReviews.vue';
 import ReviewContent from '@/components/dashboard/ReviewContent.vue';
+import Pagination from '@/components/pagination.vue';
 
 export default {
   name: 'Admin',
@@ -31,6 +35,7 @@ export default {
     AdminSideNavigation,
     AdminHeadingReviews,
     ReviewContent,
+    Pagination,
   },
 };
 </script>
@@ -71,6 +76,11 @@ export default {
   .container-right {
   margin-left: 10vw;
   width: 80vw;
+}
+.pagination {
+  width:auto;
+   margin-top:3%;
+   margin-left:5%;
 }
 
 </style>
