@@ -5,6 +5,7 @@
     <PopularActivities />
     <OurOffers/>
     <OurPackages />
+    <BookingForm />
     <Footer/>
 
   </div>
@@ -16,6 +17,7 @@ import HeroVisit from '@/components/visit/HeroVisit.vue';
 import PopularActivities from '@/components/visit/PopularActivities.vue';
 import OurOffers from '@/components/visit/OurOffers.vue';
 import OurPackages from '@/components/visit/OurPackages.vue';
+import BookingForm from '@/components/visit/BookingForm.vue';
 import Footer from '@/components/MainFooter.vue';
 
 export default {
@@ -26,6 +28,7 @@ export default {
     PopularActivities,
     OurOffers,
     OurPackages,
+    BookingForm,
     Footer,
   },
 };

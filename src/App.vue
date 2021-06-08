@@ -34,11 +34,6 @@ body {
   color: var(--blue-ink);
   position:relative;
 }
-
-</style>
-
-<style scoped>
-
 .page-container{
   padding-top:20px;
   min-height:100vh;
@@ -172,4 +167,5 @@ footer a{
 .icons span:hover{
   cursor:pointer;
 }
+
 </style>

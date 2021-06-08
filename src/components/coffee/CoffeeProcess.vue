@@ -2,11 +2,9 @@
   <div class="coffee-process">
     <div class="description">
       <p class="section-title">Coffee Process</p>
-      <p>
+      <p class="sub-text">
         Our coffee is processed using a method known as wet processing. This
         removes the coffee's fruity material &amp; leaves the coffee cherry moist.
-      </p>
-      <p>
         It is passed through a pulping machine, fermented and dried using
         forced air drying to achieve a moisture content of about 10.5%.
       </p>
@@ -213,6 +211,25 @@ export default {
   top:0;
   right: 0;
   background-color: #068d68;
+}
+
+.sub-text{
+  width:70%;
+  text-align: center;
+  line-height: 2;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media screen and (max-width:990px){
+  .sub-text{
+    width:100%;
+  }
+}
+@media screen and (max-width:480px){
+  .sub-text{
+    text-align: left;
+    padding-right: 5px;
+  }
 }
 .benefits{
   margin-top: 50px;

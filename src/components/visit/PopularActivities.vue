@@ -1,17 +1,93 @@
 <template>
   <div>
     <div class="popular-activities-container">
+      <div class="card-container" id="benefits-list">
+        <div class="card-item">
+          <div class="rating">
+            <div class="icon">
+              <fa icon="running" />
+            </div>
+            <div class="category-title">Activities</div>
+          </div>
+          <div class="item-content">
+            <div class="item-rating">
+              <fa icon="star"/>
+              <fa icon="star"/>
+              <fa icon="star"/>
+              <fa icon="star"/>
+              <fa icon="star-half-alt"/>
+            </div>
+            <ul>
+              <li>Bouldering</li>
+              <li>Jeep rides</li>
+              <li>River walks</li>
+              <li>Bird watching</li>
+              <li>Coffee tasting</li>
+            </ul>
+            <div class="link-container">
+              <a href="#offers" class="learn-more">Learn more &rarr;</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-item">
+          <div class="rating">
+            <div class="icon">
+              <fa icon="home" />
+            </div>
+            <div class="category-title">Accomodation</div>
+          </div>
+          <div class="item-content">
+            <div class="item-rating">
+              <fa icon="star"/>
+              <fa icon="star"/>
+              <fa icon="star"/>
+              <fa icon="star"/>
+              <fa icon="star"/>
+            </div>
+            <ul>
+              <li>Hilltop cottages</li>
+              <li>Camping tents</li>
+              <li>Cliff container house</li>
+            </ul>
+            <div class="link-container">
+              <a href="#offers" class="learn-more">Learn more &rarr;</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-item">
+          <div class="rating">
+            <div class="icon">
+              <fa icon="hamburger" />
+            </div>
+            <div class="category-title">Food</div>
+          </div>
+          <div class="item-content">
+            <div class="item-rating">
+              <fa icon="star"/>
+              <fa icon="star"/>
+              <fa icon="star"/>
+              <fa icon="star"/>
+              <fa icon="star"/>
+            </div>
+            <ul>
+              <li>Luwombo</li>
+              <li>Steammed matooke</li>
+              <li>Katogo</li>
+              <li>Boo</li>
+            </ul>
+            <div class="link-container">
+              <a href="#offers" class="learn-more">Learn more &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="description">
         <p class="section-title">Popular Activities</p>
-        <p>
-          Clarke Farm is a 1500 acre farm mixed farm with rivers,
-          natural and eucalyptus forests.
+        <p class="sub-text">
+          Clarke Farm is a 1500 acre farm with rivers and forest trails,
+          both in natural and man made forests.
+          There is a lot to see and do at the farm and these are the most popular activities
         </p>
-        <p>
-          There is plenty to do and see at the farm and these are
-        </p>
-        <p>The most popular activities</p>
-        <div class="linedesign"></div>
       </div>
       <div class="popular-stat">
         <div id="number">
@@ -28,7 +104,7 @@
           <div class="circle-container-image">
             <img src="@/assets/images/jeep.jpg" alt="jeep ride">
           </div>
-          <p>Jeep Ride</p>
+          <p>Jeep tour of the farm</p>
         </div>
         <div class="activity-details">
           <div class="circle-container-image">
@@ -40,7 +116,7 @@
           <div class="circle-container-image">
             <img src="@/assets/images/river-walks.jpg" alt="river walks">
           </div>
-          <p>River Walks</p>
+          <p>The river &amp; waterfall trails</p>
         </div>
     </div>
     </div>
@@ -59,12 +135,88 @@ export default {
   position: relative;
   margin-top: 60px;
 }
-
+.card-container{
+  margin-top: 40px;
+  display:flex;
+  justify-content:center;
+}
+#benefits-list{
+  overflow-x: auto;
+  overflow-y:hidden;
+}
+#benefits-list::-webkit-scrollbar{
+  width:0px;
+}
+@media screen and (max-width:700px){
+  #benefits-list{
+    justify-content: start;
+  }
+}
+.card-item{
+  min-width:280px;
+  max-width: 280px;
+  min-height: 280px;
+  max-height: 280px;
+  margin-left: 15px;
+  background-color:white;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  position:relative;
+}
+.rating{
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  height:50px;
+  margin-top: 10px;
+}
+.icon{
+  background-color:var(--dark-green);
+  height:40px;
+  width:40px;
+  border-radius: 10px;
+  color:white;
+  font-size:20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.category-title{
+  color:rgba(0,0,0,0.7);
+  font-weight: bold;
+  margin-left: 20px;
+}
+.item-content{
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top:10px;
+  height:220px;
+}
+.item-rating{
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 10px;
+  color:orange;
+}
+.link-container{
+  position:absolute;
+  bottom:15px;
+}
+.learn-more{
+  text-decoration: none;
+}
+.learn-more:hover{
+  color:var(--dark-green);
+  font-weight: bold;
+}
+.description{
+  margin-top:40px;
+}
 .section-title{
   font-weight: bold;
   font-size: 25px;
   margin-bottom:30px;
   font-family: Playfair;
+  text-align: center;
 }
 
 @media screen and (max-width:1280px){
@@ -72,18 +224,23 @@ export default {
     font-size: 20px;
   }
 }
-.description p{
+.sub-text{
+  width:70%;
   text-align: center;
-  margin-top:15px;
+  line-height: 2;
+  margin-left: auto;
+  margin-right: auto;
 }
-
-.linedesign {
-  width: 30%;
-  height: 25px;
-  position:absolute;
-  top:0;
-  right: 0;
-  background-color: #068d68;
+@media screen and (max-width:990px){
+  .sub-text{
+    width:100%;
+  }
+}
+@media screen and (max-width:480px){
+  .sub-text{
+    text-align: left;
+    padding-left: 10px;
+  }
 }
 .popular-stat{
   width:50%;
@@ -163,7 +320,7 @@ export default {
   justify-content: space-around;
   margin-top: 70px;
   flex-wrap: wrap;
-  width: 60%;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
 }

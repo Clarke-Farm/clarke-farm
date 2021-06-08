@@ -14,7 +14,7 @@
         <div class="content">
           <p><a href="/">Home</a></p>
           <p><a href="/visit">Visit Us</a></p>
-          <p><a href="/buy-coffee">Buy Coffee</a></p>
+          <p><a href="/coffee">Buy Coffee</a></p>
           <p><a href="/training-programs">Training Programs</a></p>
         </div>
       </div>

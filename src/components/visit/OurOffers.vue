@@ -1,17 +1,17 @@
 <template>
-  <div class="our-offers">
+  <div class="our-offers" id="offers">
     <div class="description">
       <p class="section-title">What We Offer</p>
-      <p>
+      <p class="sub-text">
         See all the activities you can enjoy, the accommodations to
-        choose from<br>and what our guests say about us.
+        choose from and what our guests have to say about us.
       </p>
-      <div class="linedesign"></div>
     </div>
     <div class="navigation">
       <ul>
         <li><a href="" class="active-nav">Activities</a></li>
         <li><a href="">Accommodation</a></li>
+        <li><a href="">Food</a></li>
         <li><a href="">Reviews</a></li>
       </ul>
     </div>
@@ -35,8 +35,9 @@
         <div class="card-content">
           <p class="card-title">Bouldering</p>
           <p class="card-text">
-            Walk to the top of our boulders and enjoy beautiful sunsets.
+             Walk to the top of our boulders and enjoy beautiful sunsets.
           </p>
+          <p class="activity-price">$ 0.00</p>
         </div>
       </div>
       <div class="card">
@@ -74,6 +75,7 @@ export default {
   font-size: 25px;
   margin-bottom:20px;
   font-family: Playfair;
+  text-align: center;
 }
 
 @media screen and (max-width:1280px){
@@ -81,17 +83,24 @@ export default {
     font-size: 20px;
   }
 }
-.description p{
+
+.sub-text{
+  width:70%;
   text-align: center;
-  margin-top:15px;
+  line-height: 2;
+  margin-left: auto;
+  margin-right: auto;
 }
-.linedesign {
-  width: 15%;
-  height: 25px;
-  position:absolute;
-  top:0;
-  left: 0;
-  background-color: #068d68;
+@media screen and (max-width:990px){
+  .sub-text{
+    width:100%;
+  }
+}
+@media screen and (max-width:480px){
+  .sub-text{
+    text-align: left;
+    padding-left: 10px;
+  }
 }
 .navigation{
   margin-left: auto;
@@ -160,18 +169,20 @@ a.active-nav{
   max-height:320px;
   margin-right: 20px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  position:relative;
 }
 .card-image-container{
-  height:60%;
+  height:190px;
 }
 .card-image-container img{
   width:100%;
-  height:100%;
+  height:190px;
   object-fit: cover;
 }
 .card-content{
   margin-top: 5px;
   padding-left: 10px;
+  height:130px;
 }
 .card-title{
   font-weight: bold;
@@ -184,6 +195,8 @@ a.active-nav{
   background-color: var(--dark-green);
   color:white;
   text-align: center;
+  position:absolute;
+  bottom:-10px;
 }
 .more-button-container{
   margin-top:50px;
@@ -204,7 +217,4 @@ a.active-nav{
   background-color: var(--dark-green);
   color:white;
 }
-/* div{
-  border:1px solid green;
-} */
 </style>

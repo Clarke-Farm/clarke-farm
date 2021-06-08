@@ -21,7 +21,7 @@
             <input type="text" placeholder="Telephone" name="telephone">
           </div>
           <div class="input-container">
-            <input type="text" name="size" placeholder="Group size">
+            <input type="text" name="guestNumber" placeholder="Group size">
           </div>
           <div class="input-container">
             <input type="text" name="date" placeholder="Visitation date"
@@ -33,28 +33,28 @@
               <div class="checkbox-list">
                 <div class="checkbox-pair">
                   <span>
-                    <input type="checkbox" name="coffee"> Coffee
+                    <input type="checkbox" name="topics" value="coffee"> Coffee
                   </span>
                   <span>
-                    <input type="checkbox" name="matooke"> Matooke
-                  </span>
-                </div>
-                <div class="checkbox-pair">
-                  <span>
-                    <input type="checkbox" name="chicken"> Chicken
-                  </span>
-                  <span>
-                    <input type="checkbox" name="others"> Others
+                    <input type="checkbox" name="topics" value="matooke"> Matooke
                   </span>
                 </div>
                 <div class="checkbox-pair">
                   <span>
-                    <input type="checkbox" name="irish"> Irish
+                    <input type="checkbox" name="topics" value="chicken"> Chicken
+                  </span>
+                  <span>
+                    <input type="checkbox" name="topics" value="others"> Others
                   </span>
                 </div>
                 <div class="checkbox-pair">
                   <span>
-                    <input type="checkbox" name="maize" > Maize
+                    <input type="checkbox" name="topics" value="irish"> Irish
+                  </span>
+                </div>
+                <div class="checkbox-pair">
+                  <span>
+                    <input type="checkbox" name="topics" value="maize"> Maize
                   </span>
                 </div>
               </div>

@@ -2,12 +2,11 @@
   <div class="our-packages">
     <div class="description">
       <p class="section-title">Our Packages</p>
-      <p>
-        We offer team building exercise venues for corporate events,<br>
-        tourists looking for adventure and training programs in <br>
+      <p class="sub-text">
+        We offer team building exercise venues for corporate events,
+        tourists looking for adventure and training programs in
         best agricultural practises.
       </p>
-      <div class="linedesign"></div>
     </div>
     <div class="packages-container">
       <div class="card corporate-package">
@@ -22,7 +21,7 @@
             <li>Special requests</li>
           </ul>
           <div class="button-container">
-            <a href="">Contact Us</a>
+            <a href="#visit-registration-form">Contact Us</a>
           </div>
         </div>
       </div>
@@ -37,7 +36,7 @@
             <li>All Non-priced activities</li>
           </ul>
           <div class="button-container">
-            <a href="">Book A Trip</a>
+            <a href="#visit-registration-form">Book A Trip</a>
           </div>
         </div>
       </div>
@@ -53,7 +52,7 @@
             <li>Chickens</li>
           </ul>
           <div class="button-container">
-            <a href="">For More Information</a>
+            <a href="/training-programs">For More Information</a>
           </div>
         </div>
       </div>
@@ -77,6 +76,7 @@ export default {
   font-size: 25px;
   margin-bottom:20px;
   font-family: Playfair;
+  text-align: center;
 }
 
 @media screen and (max-width:1280px){
@@ -84,17 +84,24 @@ export default {
     font-size: 20px;
   }
 }
-.description p{
+
+.sub-text{
+  width:70%;
   text-align: center;
-  margin-top:15px;
+  line-height: 2;
+  margin-left: auto;
+  margin-right: auto;
 }
-.linedesign {
-  width: 30%;
-  height: 25px;
-  position:absolute;
-  top:0;
-  right: 0;
-  background-color: #068d68;
+@media screen and (max-width:990px){
+  .sub-text{
+    width:100%;
+  }
+}
+@media screen and (max-width:480px){
+  .sub-text{
+    text-align: left;
+    padding-left: 10px;
+  }
 }
 .packages-container{
   display:flex;

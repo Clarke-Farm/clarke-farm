@@ -6,36 +6,33 @@
     </div>
     <div class="our-team-images">
       <div class="team-member-details">
-        <div class="circle-container-image">
+        <div class="container-image">
           <img src="@/assets/images/sylvester.jpg" alt="sylvester kyendy">
         </div>
         <p>Sylvester Kyendy</p>
         <p>Farm Manager</p>
       </div>
       <div class="team-member-details">
-        <div class="circle-container-image">
+        <div class="container-image">
           <img src="@/assets/images/robert.jpg" alt="robert kimuli">
         </div>
         <p>Robert Kimuli</p>
         <p>Audit &amp; Administration</p>
       </div>
       <div class="team-member-details">
-        <div class="circle-container-image">
+        <div class="container-image">
           <img src="@/assets/images/charles.jpg" alt="charles mabeeri">
         </div>
         <p>Charles Mabeeri</p>
         <p>Supervisor General Duties</p>
       </div>
       <div class="team-member-details">
-        <div class="circle-container-image">
+        <div class="container-image">
           <img src="@/assets/images/sulaiman.jpg" alt="sulaiman mulekwa">
         </div>
         <p>Sulaiman Mulekwa</p>
         <p>Head Transportation</p>
       </div>
-    </div>
-    <div class="container-show-more">
-      <button>Show More</button>
     </div>
   </div>
 </template>
@@ -51,7 +48,11 @@ export default {
   position: relative;
   margin-top: 45px;
 }
-
+@media screen and (max-width:700px){
+  .our-team{
+    padding-left:15px;
+  }
+}
 .our-team-heading h1{
   text-align: center;
   margin-top: 0;
@@ -64,13 +65,6 @@ export default {
   text-align: center;
   margin-top:15px;
 }
-@media screen and (max-width:768px){
-  .our-team-heading p{
-    width:95%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
 .linedesign {
   width: 30%;
   height: 25px;
@@ -79,53 +73,48 @@ export default {
   right: 0;
   background-color: #068d68;
 }
+@media screen and (max-width:700px){
+  .linedesign{
+    width:25%;
+  }
+}
 .our-team-images{
   display:flex;
   flex-direction:row;
-  justify-content: space-around;
+  justify-content: center;
   margin-top: 70px;
-  flex-wrap: wrap;
-  min-height: 300px;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
+  max-height:300px;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
-.circle-container-image{
+@media screen and (max-width:900px){
+  .our-team-images{
+    justify-content: start;
+  }
+}
+.our-team-images::-webkit-scrollbar{
+  width:0px;
+}
+.container-image{
   height:200px;
   width:200px;
-  border-radius: 50%;
-  border-bottom:3px solid var(--dark-green);
   margin-bottom: 10px;
 }
 img{
-  width:98%;
-  height:98%;
+  width:100%;
+  height:100%;
   object-fit: cover;
   object-position: 0px -20px;
-  border-radius: 50%;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
+.team-member-details{
+  margin-right: 20px;
+  margin-left: 5px;
+}
 .team-member-details p{
   text-align: center;
 }
-.container-show-more{
-  text-align:center;
-  margin-top: 20px;
-}
-button{
-  height:35px;
-  width:40%;
-  max-width: 180px;
-  border-radius: 3px;
-  border:none;
-  background-color: var(--dark-green);
-  color:white;
-}
-button:hover{
-  transform: scale(0.95);
-  box-shadow: 3px 3px 5px rgba(0,0,0,0.7);
-  background-color: var(--mono-dark-green);
-}
+
 </style>

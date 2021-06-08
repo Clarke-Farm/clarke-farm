@@ -13,10 +13,7 @@
         <div id="packaging-text-container">
           <p class="packaging-text">
             Coffee is available as roasted in branded packages or
-            as beans in sacks of 60 kilos
-          </p>
-          <p class="packaging-text">
-            We can supply large orders.
+            as beans in sacks of 60 kilos. We can supply large orders.
           </p>
         </div>
         <div class="contact-btn-container">
@@ -141,6 +138,18 @@ img{
 }
 .packaging-text{
   width:90%;
+  line-height: 2;
+}
+@media screen and (max-width:990px){
+  .packaging-text{
+    width:100%;
+  }
+}
+@media screen and (max-width:480px){
+  .packaging-text{
+    text-align: left;
+    padding-right: 5px;
+  }
 }
 .contact-btn-container{
   height:35px;

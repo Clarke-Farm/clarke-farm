@@ -1,30 +1,36 @@
 <template>
-  <div id="visit-container">
-    <div class="left-container">
-      <div class="left-image">
-        <img src="@/assets/images/friends.jpg" alt="friends having fun">
+  <div id="hero-visit">
+    <div id="left-container">
+      <p class="hero-text-lg">
+        Enjoy the <span class="green-highlight">unique experience</span>
+      </p>
+      <p class="hero-text-lg">
+        of being part of Clarke Farm &amp; Coffee Estate
+      </p>
+      <p class="hero-sub-text">
+        Explore the largest rock garden in Uganda, marked river trails,
+        guided farm rides in our jeeps (ATV), delicious local cuisines and embrace
+        the culture while enjoying freshly roasted coffee from the farm.
+      </p>
+      <div class="contact-btn-container">
+        <a href="#visit-registration-form">Book A Trip</a>
+      </div>
+      <div id="rating">
+        <div id="icon">
+          <fa icon="running" />
+        </div>
+        <div id="category-container">
+          <div class="title">Category</div>
+          <div class="category-content">Activities</div>
+        </div>
+        <div id="review-ratings">
+          <div class="title">Ratings</div>
+          <div class="category-content">4.5/5</div>
+        </div>
       </div>
     </div>
-    <div class="right-container">
-      <div class="text-container">
-        <p>Open Yourself To New Experiences</p>
-        <p>And Live A Life</p>
-        <p>You Will Remember</p>
-        <div class="book-btn-container">
-          <a href="">Book A Trip</a>
-        </div>
-      </div>
-      <div class="images-right">
-        <div class="image-left-section">
-          <img src="@/assets/images/bouldering.jpg" alt="bouldering" aria-hidden="true">
-        </div>
-        <div class="image-top-section">
-          <img src="@/assets/images/hill-party.jpg" alt="having fun" aria-hidden="true">
-        </div>
-        <div class="image-bottom-section">
-          <img src="@/assets/images/jeep.jpg" alt="jeep ride" aria-hidden="true">
-        </div>
-      </div>
+    <div id="right-container">
+      <img src="@/assets/images/forestwalk.jpg" alt="forest walk" aria-hidden="true">
     </div>
   </div>
 </template>
@@ -36,116 +42,76 @@ export default {
 </script>
 
 <style scoped>
-#visit-container{
-  position:relative;
+#hero-visit{
+  width:90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:25px;
 }
-.left-container{
-  min-height: 600px;
-  max-height: 600px;
-  width:15%;
-  background-color: var(--mono-dark-green);
-  position:absolute;
-  top:-75px;left: 0;
-}
-@media screen and (max-width:768px){
-  .left-container{
-    display: none;
-  }
-}
-.left-image{
-  width:230px;
-  height:230px;
-  border-radius: 50%;
-  background-color: white;
-  position:absolute;
-  top:100px;
-  left:50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-@media screen and (max-width:1041px){
-  .left-image{
-    left:30px;
-  }
-}
-.left-image img{
-  width:225px;
-  height:225px;
-  border-radius: 50%;
-  object-position: -20px 10px;
+#right-container{
+  max-height:500px;
 }
 img{
   width:100%;
-  height:100%;
+  max-height:500px;
   object-fit: cover;
 }
-.right-container{
-  width:80%;
-  margin-left:15%;
-  min-height: 500px;
-  max-height:550px;
-  margin-top: 25px;
-  position:relative;
-}
-@media screen and (max-width:768px){
-  .right-container{
-    width:95%;
-    margin-left: auto;
-    margin-right: auto;
+@media screen and (min-width:900px){
+  #hero-visit{
+    display:flex;
+    max-height: 500px;
+  }
+  #left-container{
+    padding-top:30px;
+    width:55%;
+  }
+  #right-container{
+    width:45%;
   }
 }
-.text-container{
-  width:60%;
-  position:absolute;
-  top:30px;
-  left:18%;
-}
-@media screen and (max-width:1141px){
-  .text-container{
-    left:15%;
+@media screen and (max-width:900px){
+  #right-container{
+    margin-top:30px;
   }
 }
-@media screen and (max-width:991px){
-  .text-container{
-    position:static;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    width:80%;
-  }
-}
-@media screen and (max-width:600px){
-  .text-container{
-    width:100%;
-  }
-}
-.text-container p{
+.hero-text-lg{
   font-size: 28px;
   font-weight: bold;
   margin-bottom:12px;
 }
-.book-btn-container{
+.green-highlight{
+  color:var(--dark-green);
+}
+
+.hero-sub-text{
+  width:80%;
+  margin-top:5%;
+  line-height: 2;
+}
+@media screen and (max-width:990px){
+  .hero-sub-text{
+    width:95%;
+  }
+}
+.contact-btn-container{
   height:35px;
   width:40%;
-  margin-top:70px;
+  margin-top:40px;
   max-width: 160px;
   border-radius: 3px;
   background-color: var(--dark-green);
 }
-@media screen and (max-width:991px){
-  .book-btn-container{
-    margin-top: 50px;
-    margin-left: auto;
-    margin-right: auto;
+@media screen and (max-width:700px){
+  .contact-btn-container{
+    width:160px;
   }
 }
-.book-btn-container:hover{
+.contact-btn-container:hover{
   transform: scale(0.95);
   box-shadow: 3px 3px 5px rgba(0,0,0,0.7);
   background-color: var(--mono-dark-green);
 }
-.book-btn-container a{
+.contact-btn-container a{
   text-decoration: none;
   color:white;
   height:100%;
@@ -154,66 +120,50 @@ img{
   align-items: center;
   justify-content: center;
 }
-/* Right side content styles. */
-.images-right{
-  z-index: 1;
-  width:55%;
-  height:400px;
-  position:absolute;
-  right:0;
-  top:80px;
-  display:grid;
-  grid-gap: 5px;
+
+#rating{
+  background-color:white;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+  border-radius: 10px;
+  width:300px;
+  height:70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right:20px;
+  margin-top:50px;
 }
-@media screen and (max-width:991px){
-  .images-right{
-    position:static;
-    display:flex;
-    flex-direction: row;
+@media screen and (max-width:480px){
+  #rating{
     width:100%;
-    height:260px;
-    margin-top: 30px;
-    justify-content: space-between;
-    overflow-x: auto;
-    overflow-y: hidden;
-  }
-  .images-right div{
-    min-width:250px;
-    max-width: 250px;
-  }
-  .images-right::-webkit-scrollbar{
-    width:0px;
   }
 }
-
-.image-left-section{
-  grid-row-start: 1;
-  grid-row-end: 3;
-  grid-column-start:1;
-  grid-column-end: 2;
+#icon{
+  background-color:var(--dark-green);
+  height:40px;
+  width:40px;
+  border-radius: 10px;
+  color:white;
+  font-size:22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.image-top-section{
-  grid-row-start: 1;
-  grid-row-end: 2;
-  grid-column-start: 2;
-  grid-column-end: 3;
+#category-container{
+  font-size:14px;
+  margin-top:0px;
 }
-.image-bottom-section{
-  grid-row-start: 2;
-  grid-row-end: 3;
-  grid-column-start:2;
-  grid-column-end: 3;
+.title{
+  color:rgba(0,0,0,0.7);
+  font-weight: bold;
 }
-
-@media screen and (max-width:991px){
-  .image-left-section{
-    padding-left: .5%;
-  }
+.category-content{
+  color:var(--dark-green);
+  text-align: center;
+  font-weight: bold;
 }
-
-@media screen and (max-width:768px){
-  .image-left-section{
-    padding-left:0px;
-  }
+#review-ratings{
+  font-size:14px;
 }
 </style>

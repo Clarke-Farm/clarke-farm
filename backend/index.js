@@ -6,6 +6,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const multer = require('multer');
 
+
 const app = express();
 app.use(cors());
 
@@ -13,6 +14,7 @@ app.use(cors());
 app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+
 
 // SERVING STATIC FILES WITH MIDDLEWARE FUNCTION express.static
 app.use(express.static('uploads'));
@@ -44,6 +46,7 @@ const activityRouter = require('./Routes/ActivityRoutes');
 
 app.use(activityRouter);
 
+
 // ESTABLISHING DATABASE CONNECTION
 mongoose.connect(process.env.DATABASE, {
   useCreateIndex: true,
@@ -62,10 +65,6 @@ mongoose.connection
 // HANDLING NON-EXISTING ROUTES
 app.get('*', (req, res) => {
   res.send('Error! Did not find that resource!');
-});
-
-app.get('/test', (req, res) => {
-  res.send('Hello!');
 });
 
 // SERVER LISTENING TO REQUESTS

@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 <template>
   <!-- eslint-disable-next-line vue/max-attributes-per-line -->
   <div>
@@ -6,8 +5,9 @@
       <div class="about-description">
         <p class="section-title">Who we are</p>
         <p class="sub-text">
-          Clarke Farm is a 1500 acre farm located in Kitabale, Kyenjojo District
-          in Uganda. Robusta coffee is the primary crop grown on the farm.
+          Clarke Farm is a 1,500 acre farm located in Katambale, Kyarusozi Kyenjojo
+          district in Uganda. Approximately half the farm is planted in Robusta coffee.
+          Other crops include Eucalyptus, Macadamia, Irish potatoes, Maize, Mangoes and Oranges.
         </p>
         <div id="capacity">
           <div class="stat-container">
@@ -17,7 +17,7 @@
             </div>
             <div class="stat">
               <div class="stat-num">08</div>
-              <div class="stat-text">Projects total</div>
+              <div class="stat-text">Agricultural projects</div>
             </div>
             <div class="stat">
               <div class="stat-num">02</div>
@@ -31,46 +31,54 @@
               <div class="stat-num">300</div>
               <div class="stat-text">Seasonal workers</div>
             </div>
-         </div>
+          </div>
         </div>
         <div id="our-projects">
           <p class="section-sub-heading">Projects</p>
-          <div class="info-display">
-            <div class="card">
-              <div class="card-image-container">
-                <img src="@/assets/images/mother-garden.jpg" alt="coffee" aria-hidden="true">
+          <div id="project-container">
+            <!-- <div id="scroll-left" class="angle-scroll">
+              <fa icon="angle-left" class="angle-icon"/>
+            </div> -->
+            <div class="info-display">
+              <div class="card">
+                <div class="card-image-container">
+                  <img src="@/assets/images/mother-garden.jpg" alt="coffee" aria-hidden="true">
+                </div>
+                <div class="card-content">
+                  <p class="card-title">Coffee</p>
+                  <p class="card-text">
+                    750 acres of robusta coffee and currently harvesting
+                    700,000 kilograms annually.
+                  </p>
+                </div>
               </div>
-              <div class="card-content">
-                <p class="card-title">Coffee</p>
-                <p class="card-text">
-                  300+ acres of robusta coffee and currently harvesting
-                  700,000 kilograms annually.
-                </p>
+              <div class="card">
+                <div class="card-image-container">
+                  <img src="@/assets/images/motocross1.jpg" alt="tourism" aria-hidden="true">
+                </div>
+                <div class="card-content">
+                  <p class="card-title">Tourism</p>
+                  <p class="card-text">
+                    Enjoy jeep rides, bouldering, riverwalks among many other
+                    activities. Check out our visit page for more details.
+                  </p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-image-container">
+                  <img src="@/assets/images/river-walks.jpg" alt="eucalyptus" aria-hidden="true">
+                </div>
+                <div class="card-content">
+                  <p class="card-title">Eucalyptus</p>
+                  <p class="card-text">
+                    500 acres of conservation projects.
+                  </p>
+                </div>
               </div>
             </div>
-            <div class="card">
-              <div class="card-image-container">
-                <img src="@/assets/images/motocross1.jpg" alt="tourism" aria-hidden="true">
-              </div>
-              <div class="card-content">
-                <p class="card-title">Tourism</p>
-                <p class="card-text">
-                  Enjoy jeep rides, bouldering, riverwalks among many other
-                  activities. Check out our visit page for more details.
-                </p>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-image-container">
-                <img src="@/assets/images/river-walks.jpg" alt="eucalyptus" aria-hidden="true">
-              </div>
-              <div class="card-content">
-                <p class="card-title">Eucalyptus</p>
-                <p class="card-text">
-                  Over 200+ ha for conservation projects.
-                </p>
-              </div>
-            </div>
+            <!-- <div id="scroll-right" class="angle-scroll">
+              <fa icon="angle-right" class="angle-icon"/>
+            </div> -->
           </div>
         </div>
         <div class="linedesign"></div>
@@ -80,23 +88,24 @@
       <div id="scheme-details">
         <div id="scheme-left">
           <p class="section-sub-title">
-            Clarke farm is a serene coffee farm
+            Clarke farm and coffee estate
           </p>
           <p id="scheme-text">
             We have recently invested in <span class="about-span">TOURISM </span>
-            encouraged by the serene location of the farm, surrounded by natural
-            forests with rivers , monkeys birds and so much more.
-            There are other projects on the farm for conservation and educational
-            purposes which include bamboo, oranges, eucalyptus, mangoes etc.
-            We also have an outgrower program under our social development
-            program.
+            encouraged by the location and hilly topography of the farm which
+            provides amazing views. The farm has several natural waterways and
+            lies adjacent to a natural forest with rivers, monkeys and birds.
+            There are also projects for conservation and educational
+            purposes such as planting bamboo, and reforestation. An outgrower program
+            is underway with the goal of training in production of Robusta coffee for
+            2,000 smallholders, with Clarke farm providing an end market.
           </p>
           <div class="contact-btn-container">
             <a href="">Visit Us</a>
           </div>
         </div>
         <div id="scheme-right">
-          <img src="@/assets/images/farm.jpg" alt="farm">
+          <img src="@/assets/images/clarke-farm.jpg" alt="farm">
         </div>
       </div>
     </div>
@@ -116,10 +125,9 @@ export default {
   position: relative;
   margin-top: 55px;
 }
-@media screen and (max-width: 576px){
+@media screen and (max-width:700px){
   .about{
-    margin-top:20px;
-    font-size: 14px;
+    padding-left: 20px;
   }
 }
 .section-title{
@@ -143,8 +151,13 @@ export default {
   right: 0;
   background-color: #068d68;
 }
+@media screen and (max-width:700px){
+  .linedesign{
+    width:25%;
+  }
+}
 .sub-text{
-  width:60%;
+  width:70%;
   text-align: center;
   line-height: 2;
   margin-left: auto;
@@ -162,19 +175,27 @@ export default {
   }
 }
 #capacity{
-  margin-top: 10px;
+  margin-top: 30px;
 }
 .stat-container{
   display: flex;
-  flex-wrap: wrap;
-  width:70%;
-  justify-content:space-between;
-  margin-left: auto;
-  margin-right: auto;
+  overflow-y: hidden;
+  overflow-x: auto;
 }
-@media screen and (max-width:480px){
+.stat-container::-webkit-scrollbar{
+  width:0px;
+}
+@media screen and (min-width:768px){
   .stat-container{
-    width:100%;
+    width:85%;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@media screen and (min-width:900px){
+  .stat-container{
+    width:70%;
   }
 }
 .stat{
@@ -182,10 +203,9 @@ export default {
   min-width: 100px;
   text-align: center;
 }
-
-@media screen and (max-width:480px){
+@media screen and (max-width:900px){
   .stat{
-    text-align:left;
+    margin-right: 25px;
   }
 }
 .stat-num{
@@ -203,21 +223,25 @@ export default {
   font-family: Playfair;
   font-weight: bold;
 }
-
-.info-display{
-  display:flex;
+#project-container{
+  display: flex;
+  position:relative;
   justify-content: center;
   margin-top:30px;
   overflow-x: auto;
   overflow-y: hidden;
 }
-.info-display::-webkit-scrollbar{
+#project-container::-webkit-scrollbar{
   width:0px;
 }
 @media screen and (max-width:900px){
-  .info-display{
+  #project-container{
     justify-content: start;
   }
+}
+
+.info-display{
+  display:flex;
 }
 .card{
   max-width:250px;
@@ -226,6 +250,7 @@ export default {
   margin-right: 20px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
+
 .card-image-container{
   height:60%;
 }
@@ -238,6 +263,7 @@ export default {
   margin-top: 5px;
   padding-left: 10px;
 }
+
 .card-title{
   font-weight: bold;
 }
@@ -249,7 +275,7 @@ export default {
   color: #068d68;
 }
 .about-farm{
-  margin:90px auto;
+  margin:70px auto;
 }
 #scheme-details{
   display: flex;
@@ -304,7 +330,7 @@ export default {
 }
 #scheme-text{
   line-height: 2;
-  margin-top:25px;
+  margin-top:18px;
 }
 .contact-btn-container{
   height:35px;
@@ -332,5 +358,30 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.angle-scroll{
+  width:40px;
+  height:40px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+#scroll-right{
+  margin-left:12px;
+}
+#scroll-left{
+  margin-right: 35px;
+}
+.angle-icon{
+  font-size:20px;
+  color:rgb(200,200,200);
+  display:block;
+  width:100%;
+  height:100%;
+}
+.angle-icon:hover{
+  color: rgba(0,0,0,0.7);
+  cursor: pointer;
 }
 </style>

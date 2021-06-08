@@ -122,7 +122,7 @@ export default {
   }
 }
 .sub-text{
-  width:60%;
+  width:70%;
   text-align: center;
   line-height: 2;
   margin-left: auto;

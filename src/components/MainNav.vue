@@ -1,20 +1,20 @@
 <template>
-    <div class="header">
-      <div class="nav-container">
-        <ul>
-          <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/visit">Visit</router-link></li>
-          <li><router-link to="/coffee">Buy Coffee</router-link></li>
-          <li><router-link to="/training-programs">Trainings</router-link></li>
-        </ul>
-        <div class="contact">
-          <span class="phone-icon"><fa icon="phone"/></span>
-          <span id="telephone">&nbsp;&nbsp;&nbsp;+256 (0) 392 201 400</span>
-        </div>
+  <div class="header">
+    <div class="nav-container">
+      <ul>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/visit">Visit</router-link></li>
+        <li><router-link to="/coffee">Buy Coffee</router-link></li>
+        <li><router-link to="/training-programs">Trainings</router-link></li>
+      </ul>
+      <div class="contact">
+        <span class="phone-icon"><fa icon="phone"/></span>
+        <span id="telephone">&nbsp;&nbsp;&nbsp;+256 (0) 392 201 400</span>
       </div>
-      <span class="hamburger-menu">
-        <fa icon="bars"/>
-      </span>
+    </div>
+    <span class="hamburger-menu">
+      <fa icon="bars"/>
+    </span>
   </div>
 </template>
 

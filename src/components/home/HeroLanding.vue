@@ -1,16 +1,18 @@
 <template>
   <div class="hero-section">
     <div class="left-container">
-      <p class="hero-text-lg">A farm  for the active adventurous traveler</p>
-      <p class="hero-text-lg">and source of high quality coffee</p>
+      <p class="hero-text-lg">An eco-friendly coffee estate and farm</p>
+      <p class="hero-text-lg">specializing in high quality washed</p>
+      <p class="hero-text-lg">Robusta coffee</p>
       <div class="image-biker">
         <img src="@/assets/images/bike-bg-grey.png" alt="biker" aria-hidden="true">
       </div>
       <p class="hero-sub-text">
-        We are an eco-friendly farm with amazing hilltop views,
-        rivers and surrounded by a natural forest.
-        Clarke farm is about 1,500 acres of land and predominately
-        grows coffee.
+        Visit Clarke Farm and experience the amazing hilltop views, explore
+        the river and forest walks, try the activities such as bouldering and
+        mountain biking, walk or jog on the farm trails or have an exciting guided tour
+        of the farm by Jeep. Round off your stay by roasting some Clarke Farm coffee and
+        enjoying the fresh locally prepared dishes.
       </p>
       <div class="call-to-action">
         <div id="book-trip">
@@ -70,7 +72,7 @@
 }
 @media screen and (min-width:900px){
   .left-container{
-    padding-top:30px;
+    padding-top:20px;
   }
 }
 .right-container{
@@ -94,8 +96,8 @@
   margin-bottom:12px;
 }
 .hero-sub-text{
-  width:80%;
-  margin-top:5%;
+  width:90%;
+  margin-top:4%;
   line-height: 2;
 }
 @media screen and (max-width:990px){
@@ -117,14 +119,14 @@
 @media screen and (min-width: 1280px){
   .image-biker{
     display:block;
-    left:480px;
-    top:80px;
+    left:460px;
+    top:70px;
   }
 }
 .call-to-action{
   display:flex;
   flex-direction: row;
-  margin-top: 10%;
+  margin-top: 8%;
 }
 .call-to-action div{
   height:35px;
@@ -167,6 +169,26 @@
   display:grid;
   grid-gap: 5px;
 }
+@media screen and (max-width:700px){
+  .images-right{
+    display: flex;
+    margin-top:30px;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .images-right::-webkit-scrollbar{
+    width:0px;
+  }
+  .images-right div{
+    min-width:250px;
+    max-width:250px;
+  }
+}
+.images-right img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+}
 .image-left-section{
   grid-row-start: 1;
   grid-row-end: 3;
@@ -185,29 +207,20 @@
   grid-column-start:2;
   grid-column-end: 3;
 }
-.images-right img{
-  width:100%;
-  height:100%;
-  object-fit: cover;
-}
-@media screen and (max-width:880px){
-  .image-bottom-section{
-    display:none;
-  }
+@media screen and (max-width:990px){
   .image-top-section{
-    grid-column-start: 1;
-  }
-  .image-left-section{
-    grid-row-start: 2;
-    grid-column-end: 3;
-  }
-}
-@media screen and (max-width:576px) {
-  .image-left-section{
     display: none;
   }
-  .images-right{
-    margin:20px auto;
+  .image-bottom-section{
+    display: none;
+  }
+}
+@media screen and (max-width:700px){
+  .image-top-section{
+    display: block;
+  }
+  .image-bottom-section{
+    display: block;
   }
 }
 </style>
