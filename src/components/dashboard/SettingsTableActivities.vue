@@ -1,5 +1,64 @@
 <template>
 <!-- eslint-disable max-len -->
+    <div class="action">
+          <ul>
+            <li><a href="#" class="btn-sm" role="button" data-bs-toggle="modal"
+          data-bs-target="#exampleModal"><span> <fa icon="plus"/></span></a></li>
+            <li><a href="#" class="btn-sm" role="button"><span> <fa icon="edit"/></span></a></li>
+            <li><a href="#" class="btn-sm del" role="button"><span> <fa icon="trash"/></span></a></li>
+          </ul>
+               <!-- Modal -->
+    <div class="modal fade" tabindex="-1"  id="exampleModal">
+   <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Activity</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form @submit.prevent="onSubmit" enctype="multipart/form-data">
+        <input type="file" ref="file" @change="onSelect" />
+        <h6>{{ message }}</h6>
+
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Activity Name"
+            v-model="activity.activityname"
+          />
+        </div>
+          <br>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="description"
+            v-model="activity.description"
+            required
+          />
+        </div>
+         <br>
+         <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="fee"
+            v-model="activity.activityname"
+          />
+        </div>
+         <br>
+
+         <div class="modal-footer">
+        <button  class="btn btn-success">Save changes</button>
+      </div>
+        </form>
+      </div>
+    </div>
+     </div>
+  </div>
+      </div>
+       <hr>
     <div class="table-settings">
          <table class="table table-striped align-middle">
         <thead class="align-middle ">
@@ -10,55 +69,57 @@
           <th>Price</th>
         </thead>
         <tbody>
-            <tr class="table-hover">
-                <td><div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input"></div></td>
-                <td>{{activity1.name}}</td>
-                <td> <img src="@/assets/images/motocross1.jpg" alt="biking" aria-hidden="true"></td>
-                <td>{{activity1.description}}</td>
-                <td>{{activity1.price}}</td>
-            </tr>
-            <tr class="table-hover">
-                <td><div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input"></div></td>
-                <td>{{activity2.name}}</td>
-                <td> <img src="@/assets/images/bouldering3.jpg" alt="biking" aria-hidden="true"></td>
-                <td>{{activity2.description}}</td>
-                <td>{{activity2.price}}</td>
-            </tr>
-            <tr class="table-hover">
-                <td><div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input"></div></td>
-                <td>{{activity3.name}}</td>
-                <td> <img src="@/assets/images/coffeetasting1.jpg" alt="biking" aria-hidden="true"></td>
-                <td>{{activity3.description}}</td>
-                <td>{{activity3.price}}</td>
-            </tr>
         </tbody>
      </table>
     </div>
 </template>
 <script>
+import axios from 'axios';
+
+const api = 'http://localhost:3000';
 export default {
+  name: 'SettingsTableActivities',
   data() {
     return {
-
-      activity1: {
-        name: 'Biking',
-        image: '@/assets/images/motocross1.jpg',
-        description: 'Rent a bicycle and challenge yourself on smooth and rough terrain.',
-        price: '$30.00',
-      },
-      activity2: {
-        name: 'Bouldering',
-        image: '@/assets/images/bouldering3.jpg',
-        description: 'Walk to the top of our boulders and enjoy beautiful sunsets..',
-        price: '$free',
-      },
-      activity3: {
-        name: 'Coffee Tasting',
-        image: '@/assets/images/coffeetasting1.jpg',
-        description: 'Fresh roasted robusta coffee. It\'s our pride and joy..',
-        price: '$ 5.00',
+      activity: {
+        activityname: '',
+        description: '',
+        fee: '',
       },
     };
+  },
+  methods: {
+    onSelect() {
+      const file = this.$refs.file.files[0];
+      this.file = file;
+    },
+    async onSubmit() {
+      const formData = new FormData();
+      formData.append('file', this.file);
+      // Form1
+      const endpoint1 = '/uploads';
+      try {
+        await axios.post(api + endpoint1, formData);
+        this.message = 'uploaded file successfully';
+      } catch {
+        this.message = 'file not uploaded';
+      }
+      // Form2
+      const endpoint2 = '/activities/add';
+      axios
+        .post(api + endpoint2, this.activity)
+        .then(() => {
+          // this.$router.push('/list-activities');
+          this.activity = {
+            activityname: '',
+            description: '',
+            fee: '',
+          };
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>
@@ -87,5 +148,38 @@ table,td,th{
 img{
   width:150px;
    height:100px;
+}
+ ul{
+    display: flex;
+  }
+.action li{
+   min-width:40px;
+  height:30px;
+}
+.action ul{
+  list-style-type: none;
+ color: rgba(0, 0, 0, 0.5);
+  border: none;
+  margin-left:8%;
+
+}
+.action{
+  margin-bottom: 0%;
+}
+span{
+ color: rgba(0, 0, 0, 0.5);
+   font-size:17px;
+}
+span:hover{
+  color: #068d68;
+}
+.del span:hover{
+  color:red;
+}
+ hr{
+     margin-left: 9%;
+  width:1050px;
+  margin-top: 0px;
+   bottom:0px;
 }
 </style>

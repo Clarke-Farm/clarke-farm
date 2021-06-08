@@ -12,9 +12,6 @@
       </div>
       <div class="content-table">
         <SettingsTable/>
-        <div class="pagination">
-        <Pagination />
-      </div>
       </div>
 
     </div>
@@ -26,7 +23,6 @@ import AdminSideNavigation from '@/components/AdminSideNavigation.vue';
 import AdminHeadingSettings from '@/components/dashboard/AdminHeadingSettings.vue';
 import SettingsContent from '@/components/dashboard/SettingsContent.vue';
 import SettingsTable from '@/components/dashboard/SettingsTableActivities.vue';
-import Pagination from '@/components/pagination.vue';
 
 export default {
   name: 'Activities',
@@ -40,7 +36,7 @@ export default {
     AdminHeadingSettings,
     SettingsContent,
     SettingsTable,
-    Pagination,
+
   },
 };
 </script>
@@ -65,7 +61,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #ffffff;
+background-color: #068d68;
   color: white;
   margin-left:  8.9%;
 }

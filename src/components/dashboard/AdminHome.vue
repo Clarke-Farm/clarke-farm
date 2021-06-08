@@ -9,9 +9,6 @@
       </div>
       <div class="after-toprow">
        <HomeContent/>
-       <div class="pagination">
-        <Pagination />
-      </div>
       </div>
     </div>
   </div>
@@ -21,7 +18,6 @@
 import AdminSideNavigation from '@/components/AdminSideNavigation.vue';
 import AdminHeadingHome from '@/components/dashboard/AdminHeadingHome.vue';
 import HomeContent from '@/components/dashboard/HomeContent.vue';
-import Pagination from '@/components/pagination.vue';
 
 export default {
   name: 'Admin',
@@ -34,7 +30,7 @@ export default {
     AdminSideNavigation,
     AdminHeadingHome,
     HomeContent,
-    Pagination,
+
   },
 };
 </script>
@@ -63,7 +59,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #ffffff;
+  background-color: #068d68;
   color: white;
   margin-left: 8.9%;
 }

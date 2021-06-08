@@ -15,7 +15,7 @@
         <router-link to="/admin/reviews"><fa icon="comments"/>&ensp;User Review</router-link>
       </li>
        <li>
-        <router-link to="/admin/settings"><fa icon="cog"/> &ensp;Settings</router-link>
+        <router-link to="/admin/settings/activities"><fa icon="cog"/> &ensp;Settings</router-link>
       </li>
       <li>
         <router-link to="/admin" class="logout"><fa icon="sign-out"/> &ensp;Logout</router-link>
@@ -34,7 +34,7 @@ export default {
 .nav-container {
   width: 100%;
   height: 100%;
-  background-color: #ffffff;
+  background-color: #068d68;
   margin:auto;
 }
 .nav-container ul {
@@ -50,7 +50,7 @@ export default {
 
 }
 a {
-  color: #2c3e50;;
+  color: #ffffff;
   padding-left: 30px;
   text-decoration: none;
   height: 14px;
@@ -58,38 +58,35 @@ a {
   align-items: center;
   padding:20px;
 }
-a:active{
+/* a:active{
   background-color: #f5f5f5;
   color: #068d68;
 }
 a:hover {
   transform: scale(0.95);
-}
+} */
 .router-link-active {
-background-color:#ffffff;
-  color: rgba(0, 0, 0, 0.5);
+ color: #068d68;
+ background-color:#f5f5f5;
 
 }
-.router-link-active:focus {
-background-color:#f5f5f5;
-  color: #068d68;
+.router-link-active:hover{
+   color: #068d68;
+    background-color:#f5f5f5;
+     transform: scale(1);
 }
-.router-link-active:hover {
-background-color:#f5f5f5;
-  color: #068d68;
-}
+
 .logo{
   width: 100%;
   height: 6%;
-  color: #2c3e50;
+  color: #ffffff;
   font-size: 25px;
   font-family: 'Playfair Display';
   margin:10%;
   padding:2%;
 }
 router-link{
-    background-color:#ffffff;
-    color: #2c3e50;
+    color: #ffffff;
 
 }
 .logout{

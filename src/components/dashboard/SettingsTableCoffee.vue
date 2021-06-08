@@ -1,69 +1,116 @@
 <template>
 <!-- eslint-disable max-len -->
+<div>
+   <div class="action">
+          <ul>
+            <li><a href="#" class="btn-sm" role="button" data-bs-toggle="modal"
+          data-bs-target="#exampleModal"><span> <fa icon="plus"/></span></a></li>
+            <li><a href="#" class="btn-sm" role="button"><span> <fa icon="edit"/></span></a></li>
+            <li><a href="#" class="btn-sm del" role="button"><span> <fa icon="trash"/></span></a></li>
+          </ul>
+               <!-- Modal -->
+    <div class="modal fade" tabindex="-1"  id="exampleModal">
+   <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Coffee Process Step</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form @submit.prevent="onSubmit" enctype="multipart/form-data">
+        <input type="file" ref="file" @change="onSelect" />
+        <h6>{{ message }}</h6>
+
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="coffee process step"
+            v-model="processcoffee.step"
+          />
+        </div>
+          <br>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="description"
+            v-model="processcoffee.description"
+            required
+          />
+        </div>
+         <br>
+
+         <div class="modal-footer">
+        <button  class="btn btn-success">Save changes</button>
+      </div>
+        </form>
+      </div>
+    </div>
+     </div>
+  </div>
+      </div>
+       <hr>
     <div class="table-settings">
          <table class="table table-striped align-middle">
         <thead class="align-middle ">
           <th></th>
-          <th> Coffee Process</th>
+          <th>Activity Name</th>
           <th>Image</th>
-          <th> Description</th>
+          <th>Activity Description</th>
+          <th>Price</th>
         </thead>
         <tbody>
-            <tr class="table-hover">
-                <td><div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input"></div></td>
-                <td>{{coffeeprocess1.name}}</td>
-                <td> <img src="@/assets/images/mother-garden.jpg" alt="biking" aria-hidden="true"></td>
-                <td>{{coffeeprocess1.description}}</td>
-            </tr>
-            <tr class="table-hover">
-                <td><div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input"></div></td>
-                <td>{{coffeeprocess2.name}}</td>
-                <td> <img src="@/assets/images/cherry-picking.jpg" alt="biking" aria-hidden="true"></td>
-                <td>{{coffeeprocess2.description}}</td>
-            </tr>
-            <tr class="table-hover">
-                <td><div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input"></div></td>
-                <td>{{coffeeprocess3.name}}</td>
-                <td> <img src="@/assets/images/wet-processing.jpg" alt="biking" aria-hidden="true"></td>
-                <td>{{coffeeprocess3.description}}</td>
-            </tr>
-            <!-- <tr class="table-hover">
-                <td><div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input"></div></td>
-                <td>{{activity2.name}}</td>
-                <td> <img src="@/assets/images/bouldering3.jpg" alt="biking" aria-hidden="true"></td>
-                <td>{{activity2.description}}</td>
-            </tr>
-            <tr class="table-hover">
-                <td><div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input"></div></td>
-                <td>{{activity3.name}}</td>
-                <td> <img src="@/assets/images/coffeetasting1.jpg" alt="biking" aria-hidden="true"></td>
-                <td>{{activity3.description}}</td>
-            </tr> -->
         </tbody>
      </table>
     </div>
+</div>
 </template>
 <script>
+import axios from 'axios';
+
+const api = 'http://localhost:3000';
 export default {
+  name: 'SettingsTableActivities',
   data() {
     return {
-
-      coffeeprocess1: {
-        name: 'Mother Garden',
-        image: '@/assets/images/mother-garden.jpg',
-        description: 'Our mother garden consists of a variety of coffee seedlings. We have all 7 lines of coffee wilt disease resistant varieties and the traditional clones A-F.',
-      },
-      coffeeprocess2: {
-        name: 'Cherry Picking',
-        image: '@/assets/images/cherry-picking.jpg',
-        description: 'Our mother garden consists of a variety of coffee seedlings. We have all 7 lines of coffee wilt disease resistant varieties and the traditional clones A-F.',
-      },
-      coffeeprocess3: {
-        name: 'Wet Washing',
-        image: '@/assets/images/wet-processing.jpg',
-        description: 'Our mother garden consists of a variety of coffee seedlings. We have all 7 lines of coffee wilt disease resistant varieties and the traditional clones A-F.',
+      processcoffee: {
+        step: '',
+        description: '',
       },
     };
+  },
+  methods: {
+    onSelect() {
+      const file = this.$refs.file.files[0];
+      this.file = file;
+    },
+    async onSubmit() {
+      const formData = new FormData();
+      formData.append('file', this.file);
+      // Form1
+      const endpoint1 = '/uploads';
+      try {
+        await axios.post(api + endpoint1, formData);
+        this.message = 'uploaded file successfully';
+      } catch {
+        this.message = 'file not uploaded';
+      }
+      // Form2
+      const endpoint2 = '/activities/add';
+      axios
+        .post(api + endpoint2, this.processcoffee)
+        .then(() => {
+          // this.$router.push('/list-activities');
+          this.processcoffee = {
+            step: '',
+            description: '',
+          };
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>
@@ -92,5 +139,38 @@ table,td,th{
 img{
   width:150px;
    height:100px;
+}
+ ul{
+    display: flex;
+  }
+.action li{
+   min-width:40px;
+  height:30px;
+}
+.action ul{
+  list-style-type: none;
+ color: rgba(0, 0, 0, 0.5);
+  border: none;
+  margin-left:8%;
+
+}
+.action{
+  margin-bottom: 0%;
+}
+span{
+ color: rgba(0, 0, 0, 0.5);
+   font-size:17px;
+}
+span:hover{
+  color: #068d68;
+}
+.del span:hover{
+  color:red;
+}
+ hr{
+     margin-left: 9%;
+  width:1050px;
+  margin-top: 0px;
+   bottom:0px;
 }
 </style>

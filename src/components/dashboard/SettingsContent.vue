@@ -7,20 +7,11 @@
         <li> <router-link to="/admin/settings/activities">Activities</router-link></li>
         <li><router-link to="/admin/settings/accommodation">Accomodation</router-link></li>
         <li><router-link to="/admin/settings/coffee">Coffee Process</router-link></li>
-        <li><router-link to="/admin/settings/accommodation">Training Program</router-link></li>
+        <li><router-link to="/admin/settings/training-program">Training Program</router-link></li>
       </ul>
     </div>
       </div>
-          <div class="action">
-          <ul>
-            <li><a href="#" class="btn-sm" role="button"><span> <fa icon="plus"/></span></a></li>
-            <li><a href="#" class="btn-sm" role="button"><span> <fa icon="edit"/></span></a></li>
-            <li><a href="#" class="btn-sm del" role="button"><span> <fa icon="trash"/></span></a></li>
-          </ul>
-      </div>
-      <hr>
     </div>
-    <br>
 </template>
 <script>
 
@@ -49,7 +40,7 @@ export default {
 }
 .action ul{
   list-style-type: none;
-  position: absolute;
+  /* position: absolute; */
  color: rgba(0, 0, 0, 0.5);
   border: none;
   margin-left:8%;
@@ -97,9 +88,6 @@ table,td,th{
 img{
   width:150px;
    height:100px;
-}
-.action{
-  margin-bottom: 3%;
 }
 span{
  color: rgba(0, 0, 0, 0.5);

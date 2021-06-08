@@ -1,5 +1,65 @@
 <template>
 <!-- eslint-disable max-len -->
+<div>
+  <div class="action">
+          <ul>
+            <li><a href="#" class="btn-sm" role="button" data-bs-toggle="modal"
+          data-bs-target="#exampleModal"><span> <fa icon="plus"/></span></a></li>
+            <li><a href="#" class="btn-sm" role="button"><span> <fa icon="edit"/></span></a></li>
+            <li><a href="#" class="btn-sm del" role="button"><span> <fa icon="trash"/></span></a></li>
+          </ul>
+               <!-- Modal -->
+    <div class="modal fade" tabindex="-1"  id="exampleModal">
+   <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Accommodation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form @submit.prevent="onSubmit" enctype="multipart/form-data">
+        <input type="file" ref="file" @change="onSelect" />
+        <h6>{{ message }}</h6>
+
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Accommodation Type"
+            v-model="accommodation.accommodationtype"
+          />
+        </div>
+          <br>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="description"
+            v-model="accommodation.description"
+            required
+          />
+        </div>
+         <br>
+         <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="fee"
+            v-model="accommodation.fee"
+          />
+        </div>
+         <br>
+
+         <div class="modal-footer">
+        <button  class="btn btn-success">Save changes</button>
+      </div>
+        </form>
+      </div>
+    </div>
+     </div>
+  </div>
+      </div>
+       <hr>
     <div class="table-settings">
          <table class="table table-striped align-middle">
         <thead class="align-middle ">
@@ -10,52 +70,59 @@
           <th>Price</th>
         </thead>
         <tbody>
-            <tr class="table-hover">
-                <td><div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input"></div></td>
-                <td>{{ accommodation1.name}}</td>
-                <td> <img src="@/assets/images/container-house.jpg" alt="biking" aria-hidden="true"></td>
-                <td>{{ accommodation1.description}}</td>
-                <td>{{ accommodation1.price}}</td>
-            </tr>
-             <tr class="table-hover">
-                <td><div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input"></div></td>
-                <td>{{ accommodation2.name}}</td>
-                <td> <img src="@/assets/images/camping-tent.jpg" alt="biking" aria-hidden="true"></td>
-                <td>{{ accommodation2.description}}</td>
-                <td>{{ accommodation2.price}}</td>
-            </tr>
-              <tr class="table-hover">
-                <td><div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input"></div></td>
-                <td>{{ accommodation2.name}}</td>
-                <td> <img src="@/assets/images/cottages.jpg" alt="biking" aria-hidden="true"></td>
-                <td>{{ accommodation2.description}}</td>
-                <td>{{ accommodation2.price}}</td>
-            </tr>
         </tbody>
      </table>
     </div>
+</div>
 </template>
 <script>
+import axios from 'axios';
+
+const api = 'http://localhost:3000';
 export default {
+  name: 'SettingsTableAccommodation',
   data() {
     return {
+      accommodation: {
+        accommodationtype: '',
+        description: '',
+        fee: '',
+      },
 
-      accommodation1: {
-        name: 'Container House',
-        description: 'Rent a bicycle and challenge yourself on smooth and rough terrain.',
-        price: '$300 per person',
-      },
-      accommodation2: {
-        name: 'Camping Tents',
-        description: 'Rent a bicycle and challenge yourself on smooth and rough terrain.',
-        price: '$100 per tent',
-      },
-      accommodation3: {
-        name: 'Camping Tents',
-        description: 'Rent a bicycle and challenge yourself on smooth and rough terrain.',
-        price: '$200 per tent',
-      },
     };
+  },
+  methods: {
+    onSelect() {
+      const file = this.$refs.file.files[0];
+      this.file = file;
+    },
+    async onSubmit() {
+      const formData = new FormData();
+      formData.append('file', this.file);
+      // Form1
+      const endpoint1 = '/uploads';
+      try {
+        await axios.post(api + endpoint1, formData);
+        this.message = 'uploaded file successfully';
+      } catch {
+        this.message = 'file not uploaded';
+      }
+      // Form2
+      const endpoint2 = '/accommodation/add';
+      axios
+        .post(api + endpoint2, this.accommodation)
+        .then(() => {
+          // this.$router.push('/list-activities');
+          this.accommodation = {
+            accommodationtype: '',
+            description: '',
+            fee: '',
+          };
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>
@@ -84,5 +151,38 @@ table,td,th{
 img{
   width:150px;
    height:100px;
+}
+ ul{
+    display: flex;
+  }
+.action li{
+   min-width:40px;
+  height:30px;
+}
+.action ul{
+  list-style-type: none;
+ color: rgba(0, 0, 0, 0.5);
+  border: none;
+  margin-left:8%;
+
+}
+.action{
+  margin-bottom: 0%;
+}
+span{
+ color: rgba(0, 0, 0, 0.5);
+   font-size:17px;
+}
+span:hover{
+  color: #068d68;
+}
+.del span:hover{
+  color:red;
+}
+ hr{
+     margin-left: 9%;
+  width:1050px;
+  margin-top: 0px;
+   bottom:0px;
 }
 </style>
