@@ -10,7 +10,6 @@
       <div class="after-toprow">
        <HomeContent/>
       </div>
-
     </div>
   </div>
 </template>
@@ -31,6 +30,7 @@ export default {
     AdminSideNavigation,
     AdminHeadingHome,
     HomeContent,
+
   },
 };
 </script>
@@ -59,7 +59,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #ffffff;
+  background-color: #068d68;
   color: white;
   margin-left: 8.9%;
 }
@@ -72,6 +72,11 @@ export default {
   .container-right {
   margin-left: 10vw;
   width: 80vw;
+}
+.pagination {
+  width:auto;
+   margin-top:3%;
+   margin-left:5%;
 }
 
 </style>

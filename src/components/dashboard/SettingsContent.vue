@@ -4,74 +4,19 @@
       <div class="row">
         <div class="navigation">
        <ul>
-        <li><a href="" class="active-nav">Activities</a></li>
-        <li><a href="">Accomodation</a></li>
-        <li><a href="">Coffee Process</a></li>
-        <li><a href="">Training Program</a></li>
+        <li> <router-link to="/admin/settings/activities">Activities</router-link></li>
+        <li><router-link to="/admin/settings/accommodation">Accomodation</router-link></li>
+        <li><router-link to="/admin/settings/coffee">Coffee Process</router-link></li>
+        <li><router-link to="/admin/settings/training-program">Training Program</router-link></li>
       </ul>
     </div>
       </div>
-          <div class="action">
-          <ul>
-            <li><a href="#" class="btn-sm" role="button"><span> <fa icon="plus"/></span></a></li>
-            <li><a href="#" class="btn-sm" role="button"><span> <fa icon="edit"/></span></a></li>
-            <li><a href="#" class="btn-sm del" role="button"><span> <fa icon="trash"/></span></a></li>
-          </ul>
-      </div>
-      <hr>
-      <table class="table table-striped align-middle">
-        <thead class="align-middle ">
-          <th></th>
-          <th>Activity Name</th>
-          <th>Image</th>
-          <th>Activity Description</th>
-        </thead>
-        <tbody>
-            <tr class="table-hover">
-                <td><div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input"></div></td>
-                <td>{{activity1.name}}</td>
-                <td> <img src="@/assets/images/motocross1.jpg" alt="biking" aria-hidden="true"></td>
-                <td>{{activity1.description}}</td>
-            </tr>
-            <tr class="table-hover">
-                <td><div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input"></div></td>
-                <td>{{activity2.name}}</td>
-                <td> <img src="@/assets/images/bouldering3.jpg" alt="biking" aria-hidden="true"></td>
-                <td>{{activity2.description}}</td>
-            </tr>
-            <tr class="table-hover">
-                <td><div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input"></div></td>
-                <td>{{activity3.name}}</td>
-                <td> <img src="@/assets/images/coffeetasting1.jpg" alt="biking" aria-hidden="true"></td>
-                <td>{{activity3.description}}</td>
-            </tr>
-        </tbody>
-     </table>
     </div>
-    <br>
 </template>
 <script>
-export default {
-  data() {
-    return {
 
-      activity1: {
-        name: 'Biking',
-        image: '@/assets/images/motocross1.jpg',
-        description: 'Rent a bicycle and challenge yourself on smooth and rough terrain.',
-      },
-      activity2: {
-        name: 'Bouldering',
-        image: '@/assets/images/bouldering3.jpg',
-        description: 'Walk to the top of our boulders and enjoy beautiful sunsets..',
-      },
-      activity3: {
-        name: 'Coffee Tasting',
-        image: '@/assets/images/coffeetasting1.jpg',
-        description: 'Fresh roasted robusta coffee. It\'s our pride and joy..',
-      },
-    };
-  },
+export default {
+
 };
 </script>
 <style scoped>
@@ -95,7 +40,7 @@ export default {
 }
 .action ul{
   list-style-type: none;
-  position: absolute;
+  /* position: absolute; */
  color: rgba(0, 0, 0, 0.5);
   border: none;
   margin-left:8%;
@@ -143,9 +88,6 @@ table,td,th{
 img{
   width:150px;
    height:100px;
-}
-.action{
-  margin-bottom: 3%;
 }
 span{
  color: rgba(0, 0, 0, 0.5);
