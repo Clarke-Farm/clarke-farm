@@ -1,0 +1,34 @@
+GET http://localhost:3000/visitors
+
+###
+POST http://localhost:3000/visitors/add
+Content-Type: application/json
+
+{
+  "name": "Charles Elloit",
+  "email": "charles@gmail.com",
+  "phone": "0777827222",
+  "guestNumber": "2",
+  "bookingtype": "Training"
+}
+
+###
+GET http://localhost:3000/visitors/60c8df4f8ed1460d9c56920e
+
+###
+GET http://localhost:3000/edit-visitor/60c8e15f8ed1460d9c56920f
+
+###
+POST  http://localhost:3000/update-visitor/60c8e15f8ed1460d9c56920f
+Content-Type: application/json
+
+{
+  "name": "Charles Elloit",
+  "email": "charles@yahoo.com",
+  "phone": "0777827222",
+  "guestNumber": "2",
+  "bookingtype": "Training"
+}
+
+###
+GET http://localhost:3000/delete-visitor/60c8df4f8ed1460d9c56920e
