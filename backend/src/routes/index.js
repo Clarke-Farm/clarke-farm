@@ -17,15 +17,19 @@ router.get("/delete-visitor/:id", visitorRoute.deleteVisitor);
 router.post("/trainingvisit/add", visitorRoute.addTrainingVisitor);
 
 // Activity Routes
+router.get("/activities", activityRouter.getAllActivities);
 router.post("/activities/add", activityRouter.addActivity);
 
 // Training Routes
 router.post("/trainings/add", trainingRouter.addTrainings)
+router.get("/trainings", trainingRouter.getAllTrainings);
 
 // Accommodation Routes
-router.post("/accomodations/add", accommodationRouter.addAccommodation);
+router.get("/accommodations", accommodationRouter.getAllAccommodations)
+router.post("/accommodations/add", accommodationRouter.addAccommodation);
 
 // Coffeeprocess Route
 router.post("/coffee-processes/add", coffeeprocessRouter.addCoffeeprocess);
+router.get("/coffee-processes", coffeeprocessRouter.getAllCoffeeprocesses)
 
 module.exports = router;

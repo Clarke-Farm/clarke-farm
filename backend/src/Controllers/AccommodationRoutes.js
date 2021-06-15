@@ -11,3 +11,13 @@ exports.addAccommodation = async (req, res) => {
     res.json('Unsuccessful! Please Try Again');
   }
 };
+
+// FIND ALL ACCOMODATIONS
+exports.getAllAccommodations = async (req, res) => {
+  try {
+    const accomodations = await collection.Accomodation.find();
+    res.json(accomodations);
+  } catch (error) {
+    res.status(400).send('Unable to find records');
+  }
+};

@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const activitySchema = new Schema({
+  filename: {
+    type: String,
+  },
   activityname: {
     type: String,
   },

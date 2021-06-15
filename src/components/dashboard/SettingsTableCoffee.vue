@@ -18,6 +18,14 @@
         <input type="file" ref="file" @change="onSelect" />
         <h6>{{ message }}</h6>
 
+         <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="filename"
+            v-model="processcoffee.filename"
+          /></div> <br>
+
         <div class="form-group">
           <input
             type="text"
@@ -55,6 +63,27 @@
           <th>Description</th>
         </thead>
         <tbody>
+          <tr v-for="processcoffee in  coffeeprocessList" :key="processcoffee._id">
+            <td>{{processcoffee.step }}</td>
+             <td>
+              <img
+              :src="require('../../../backend/uploads/' + processcoffee.filename + '.jpg')" alt="activity"/>
+              </td>
+            <td id="td-description">{{processcoffee.description}}</td>
+            <td>
+              <a style="color: #068d68"><fa icon="edit" /></a>
+              <a href=""
+                ><fa
+                  icon="trash"
+                  style="
+                    float: right;
+                    margin-left: 35px;
+                    margin-top: -20px;
+                    color: red;
+                  "
+              /></a>
+            </td>
+          </tr>
         </tbody>
      </table>
     </div>
@@ -68,11 +97,24 @@ export default {
   name: 'SettingsTableActivities',
   data() {
     return {
+      coffeeprocessList: [],
       processcoffee: {
+        filename: '',
         step: '',
         description: '',
       },
     };
+  },
+  created() {
+    // const endpoint = '/activities';
+    axios
+      .get('http://localhost:3000/coffee-processes')
+      .then((res) => {
+        this.coffeeprocessList = res.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
   methods: {
     onSelect() {
@@ -97,6 +139,7 @@ export default {
         .then(() => {
           // this.$router.push('/list-activities');
           this.processcoffee = {
+            filename: '',
             step: '',
             description: '',
           };

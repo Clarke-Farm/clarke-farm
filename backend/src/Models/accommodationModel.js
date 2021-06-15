@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const accomodationSchema = new Schema({
+  filename: {
+    type: String,
+  },
   accommodationtype: {
     type: String,
   },

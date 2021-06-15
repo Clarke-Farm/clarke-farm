@@ -14,6 +14,18 @@ import router from './router';
 import store from './store';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+<<<<<<< HEAD
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+import 'vue-material/dist/vue-material.min.css';
+import 'vue-material/dist/theme/default.css';
+
+
+
+
+
+=======
+>>>>>>> 914881bd1608ba5e007a48a4a832ebe69c3f56c2
 
 library.add(faPhone, faBars, faEye, faFacebookF, faTwitter,
   faInstagram, faTrash, faCog, faHome, faBook, faStar, faSignOutAlt,

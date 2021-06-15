@@ -17,6 +17,14 @@
         <input type="file" ref="file" @change="onSelect" />
         <h6>{{ message }}</h6>
 
+         <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="filename"
+            v-model="training.filename"
+          /></div> <br>
+
         <div class="form-group">
           <input
             type="text"
@@ -62,9 +70,32 @@
           <th>Program Name</th>
           <th>Image</th>
           <th>Description</th>
-          <th>Price</th>
+          <th>Fee</th>
+          <th>Action</th>
         </thead>
         <tbody>
+          <tr v-for="training in trainingsList" :key="training._id">
+            <td>{{training.programtitle }}</td>
+             <td>
+              <img
+              :src="require('../../../backend/uploads/' + training.filename + '.jpg')" alt="activity"/>
+              </td>
+            <td>{{ training.description}}</td>
+            <td>{{training.fee}}</td>
+            <td>
+              <a style="color: #068d68"><fa icon="edit" /></a>
+              <a href=""
+                ><fa
+                  icon="trash"
+                  style="
+                    float: right;
+                    margin-left: 35px;
+                    margin-top: -20px;
+                    color: red;
+                  "
+              /></a>
+            </td>
+          </tr>
         </tbody>
      </table>
     </div>
@@ -78,12 +109,25 @@ export default {
   name: 'SettingsTableTraining',
   data() {
     return {
+      trainingsList: [],
       training: {
+        filename: '',
         programtitle: '',
         description: '',
         fee: '',
       },
     };
+  },
+  created() {
+    // const endpoint = '/activities';
+    axios
+      .get('http://localhost:3000/trainings')
+      .then((res) => {
+        this.trainingsList = res.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
   methods: {
     onSelect() {
@@ -108,6 +152,7 @@ export default {
         .then(() => {
           // this.$router.push('/list-activities');
           this.training = {
+            filename: '',
             programtitle: '',
             description: '',
             fee: '',

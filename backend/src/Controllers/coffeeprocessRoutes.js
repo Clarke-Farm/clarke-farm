@@ -11,3 +11,13 @@ exports.addCoffeeprocess = async (req, res) => {
     res.json('Unsuccessful! Please Try Again');
   }
 };
+
+// FIND ALL COFFEE PROCESS
+exports.getAllCoffeeprocesses = async (req, res) => {
+  try {
+    const coffeeProcesses = await collection.CoffeeProcess.find();
+    res.json(coffeeProcesses);
+  } catch (error) {
+    res.status(400).send('Unable to find records');
+  }
+};

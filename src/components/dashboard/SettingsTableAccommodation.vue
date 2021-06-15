@@ -17,6 +17,14 @@
         <input type="file" ref="file" @change="onSelect" />
         <h6>{{ message }}</h6>
 
+         <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="filename"
+            v-model="accommodation.filename"
+          /></div> <br>
+
         <div class="form-group">
           <input
             type="text"
@@ -62,8 +70,31 @@
           <th>Image</th>
           <th>Description</th>
           <th>Price</th>
+          <th>Action</th>
         </thead>
         <tbody>
+           <tr v-for="accommodation in accommodationList" :key="accommodation._id">
+            <td>{{accommodation.accommodationtype }}</td>
+             <td>
+              <img
+              :src="require('../../../backend/uploads/' + accommodation.filename + '.jpg')" alt="activity"/>
+              </td>
+            <td id="td-description">{{ accommodation.description}}</td>
+            <td>{{accommodation.fee}}</td>
+            <td>
+              <a style="color: #068d68"><fa icon="edit" /></a>
+              <a href=""
+                ><fa
+                  icon="trash"
+                  style="
+                    float: right;
+                    margin-left: 35px;
+                    margin-top: -20px;
+                    color: red;
+                  "
+              /></a>
+            </td>
+          </tr>
         </tbody>
      </table>
     </div>
@@ -77,13 +108,26 @@ export default {
   name: 'SettingsTableAccommodation',
   data() {
     return {
+      accommodationList: [],
       accommodation: {
+        filename: '',
         accommodationtype: '',
         description: '',
         fee: '',
       },
 
     };
+  },
+  created() {
+    // const endpoint = '/activities';
+    axios
+      .get('http://localhost:3000/accommodations')
+      .then((res) => {
+        this.accommodationList = res.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
   methods: {
     onSelect() {
@@ -108,6 +152,7 @@ export default {
         .then(() => {
           // this.$router.push('/list-activities');
           this.accommodation = {
+            filename: '',
             accommodationtype: '',
             description: '',
             fee: '',

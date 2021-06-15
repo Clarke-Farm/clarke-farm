@@ -11,3 +11,13 @@ exports.addTrainings = async (req, res) => {
     res.json('Unsuccessful! Please Try Again');
   }
 };
+
+// FIND ALL TRAININGS
+exports.getAllTrainings = async (req, res) => {
+  try {
+    const trainings = await collection.Training.find();
+    res.json(trainings);
+  } catch (error) {
+    res.status(400).send('Unable to find records');
+  }
+};
