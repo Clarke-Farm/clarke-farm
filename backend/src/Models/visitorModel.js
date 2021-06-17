@@ -32,9 +32,9 @@ const visitorSchema = new Schema({
   requests: {
     type: String,
   },
-  topics:{
+  topics: {
     type: Array,
-  }
+  },
 },
 { timestamps: true },
 {

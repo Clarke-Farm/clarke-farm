@@ -15,18 +15,30 @@
             <input type="text" name="name" placeholder="Name" v-model="visitor.name" required>
           </div>
           <div class="input-container">
-            <input type="email" placeholder="Email Address" name="email" v-model="visitor.email" required>
+            <input
+              type="email"
+              placeholder="Email Address"
+              name="email" v-model="visitor.email" required>
           </div>
           <div class="input-container">
-            <input type="text" placeholder="Telephone" name="telephone" v-model="visitor.phone" required>
+            <input
+              type="text"
+              placeholder="Telephone"
+              name="telephone" v-model="visitor.phone" required>
           </div>
           <div class="input-container">
-            <input type="text" name="guestNumber" placeholder="Group size" v-model="visitor.guestNumber" required>
+            <input
+              type="text"
+              name="guestNumber"
+              placeholder="Group size" v-model="visitor.guestNumber" required>
           </div>
           <div class="input-container">
-            <input type="text" name="date" placeholder="Visitation date" v-model="visitor.date" required
-            onfocus='(this.type="date")'>
-             <input
+            <input
+              type="text"
+              name="date"
+              placeholder="Visitation date" v-model="visitor.date" required
+              onfocus='(this.type="date")'>
+            <input
               type="text"
               name="bookingtype"
               v-model="visitor.bookingtype"
@@ -89,7 +101,7 @@ export default {
         phone: '',
         guestNumber: '',
         date: '',
-        topics:[],
+        topics: [],
         bookingtype: 'Training',
       },
     };
@@ -106,8 +118,8 @@ export default {
           phone: '',
           guestNumber: '',
           date: '',
-          topics:[],
-        bookingtype: 'Training',
+          topics: [],
+          bookingtype: 'Training',
         };
         // Use sweetalert2
         this.$swal({
