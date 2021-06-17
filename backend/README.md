@@ -2,7 +2,9 @@
 
 ## Local Development
 
-**Starting the development server**
+**Setup**
+
+Starting the server
 
 ```bash
 $ npm run dev
