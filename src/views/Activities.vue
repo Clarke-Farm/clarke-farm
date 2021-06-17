@@ -64,15 +64,14 @@ export default {
   color: white;
   margin-left: 20px;
 }
-.container-right {
-  margin-left: 6vw;
-  width: 80vw;
+
+  .container-right {
+  margin-left:80px;
+  width: 85%;
+  margin-top:0px;
+  overflow-x: hidden;
 }
-.pagination {
-  width:500px;
-   margin-top:3%;
-   margin-left:7%;
-}
+
 body{
   background: #f5f5f5;
 }

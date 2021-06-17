@@ -20,7 +20,6 @@ import AdminSideNavigation from '@/components/AdminSideNavigation.vue';
 import AdminHeadingReviews from '@/components/dashboard/AdminHeadingReviews.vue';
 // eslint-disable-next-line import/no-unresolved
 import ReviewContent from '@/components/dashboard/ReviewContent.vue';
-import Pagination from '@/components/pagination.vue';
 
 export default {
   name: 'Admin',
@@ -33,7 +32,6 @@ export default {
     AdminSideNavigation,
     AdminHeadingReviews,
     ReviewContent,
-    Pagination,
   },
 };
 </script>

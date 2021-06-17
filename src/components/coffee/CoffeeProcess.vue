@@ -8,7 +8,7 @@
         It is passed through a pulping machine, fermented and dried using
         forced air drying to achieve a moisture content of about 10.5%.
       </p>
-      <div class="linedesign"></div>
+      <!-- <div class="linedesign"></div> -->
     </div>
     <div class="benefits">
       <p class="section-sub-heading">Benefits of our process</p>
@@ -181,7 +181,7 @@ export default {
 <style scoped>
 .coffee-process{
   position:relative;
-  margin-top:60px;
+  margin-top:70px;
 }
 @media screen and (min-width:700px) and (max-width:910px) {
   .coffee-process{

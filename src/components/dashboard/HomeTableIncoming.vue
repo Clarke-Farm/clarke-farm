@@ -8,15 +8,47 @@
           <th>Email</th>
         </thead>
         <tbody>
+          <tr v-for="visitor in visitorList" :key="visitor._id">
+             <td>{{ visitor.createdAt }}</td>
+            <td>{{ visitor.name }}</td>
+            <td>{{ visitor.bookingtype }}</td>
+            <td>{{ visitor.phone }}</td>
+            <td>{{ visitor.email }}</td>
+            <td>
+              <a style="color: #068d68"><fa icon="eye" /></a>
+              <a href="" @click.prevent="deleteVisitor(visitor._id)"
+                ><fa
+                  icon="trash"
+                  style="
+                    float: right;
+                    margin-left: 35px;
+                    margin-top: -20px;
+                    color: red;
+                  "
+              /></a>
+            </td>
+          </tr>
         </tbody>
      </table>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
-
+      visitorList: [],
     };
+  },
+  created() {
+    axios
+      .get('http://localhost:3000/visitors')
+      .then((res) => {
+        this.visitorList = res.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
 };
 </script>

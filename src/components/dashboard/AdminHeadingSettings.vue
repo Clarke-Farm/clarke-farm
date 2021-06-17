@@ -36,7 +36,7 @@ export default {
 <style scoped>
 .top-row{
   width: 100%;
-  margin-left: 10px;
+  margin-left: 40px;
   padding: 10px;
 }
 h3{

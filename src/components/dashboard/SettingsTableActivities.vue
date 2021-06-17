@@ -1,12 +1,10 @@
 <template>
 <!-- eslint-disable max-len -->
-  <div>
-      <div class="action">
+  <div class="mt-5">
+    <a href="#" class="btn btn-sm text-white add mb-3" type="button" data-bs-toggle="modal"
+    data-bs-target="#exampleModal">Add Activity</a>
 
-            <a href="#" class="btn btn-sm text-white " type="button" data-bs-toggle="modal"
-          data-bs-target="#exampleModal">Add Activity</a>
-
-               <!-- Modal -->
+  <!-- Modal -->
     <div class="modal fade" tabindex="-1"  id="exampleModal">
    <div class="modal-dialog">
     <div class="modal-content">
@@ -56,23 +54,44 @@
          <br>
 
          <div class="modal-footer">
-        <button  class="btn btn-success">Save changes</button>
+        <button  class="btn add text-white">Save changes</button>
       </div>
         </form>
       </div>
     </div>
      </div>
   </div>
-      </div>
-    <div class="table-settings">
+
          <table class="table table-striped table-bordered">
-        <thead class="align-left ">
-          <th>Activity</th>
+        <thead>
+          <th>Activity Name</th>
           <th>Image</th>
           <th>Activity Description</th>
           <th>Price</th>
           <th>Action</th>
         </thead>
+           <tbody>
+          <tr v-for="visitor in visitorList" :key="visitor._id">
+            <td>{{ visitor.createdAt }}</td>
+            <td>{{ visitor.name }}</td>
+            <td>{{ visitor.bookingtype }}</td>
+            <td>{{ visitor.phone }}</td>
+            <td>{{ visitor.email }}</td>
+            <td>
+              <a style="color: #068d68"><fa icon="eye" /></a>
+              <a href="" @click.prevent="deleteVisitor(visitor._id)"
+                ><fa
+                  icon="trash"
+                  style="
+                    float: right;
+                    margin-left: 35px;
+                    margin-top: -20px;
+                    color: red;
+                  "
+              /></a>
+            </td>
+          </tr>
+        </tbody>
         <tbody>
            <tr v-for="activity in activityList" :key="activity._id">
             <td>{{ activity.activityname }}</td>
@@ -98,7 +117,6 @@
           </tr>
         </tbody>
      </table>
-    </div>
   </div>
 </template>
 <script>
@@ -166,6 +184,7 @@ export default {
 };
 </script>
 <style scoped>
+
 table{
   padding:0px;
   margin-top:30px;
@@ -194,13 +213,10 @@ img{
  ul{
     display: flex;
   }
-.action{
-   min-width:40px;
-  height:30px;
-  float:right;
+.add{
+  float: right;
   background-color: #068d68;
-  margin-bottom: 10px;
-  margin-right: 0px;
-}
+  margin-right: 10px;
 
+}
 </style>

@@ -16,7 +16,6 @@ import AdminSideNavigation from '@/components/AdminSideNavigation.vue';
 import AdminHeadingHome from '@/components/dashboard/AdminHeadingHome.vue';
 import HomeContent from '@/components/dashboard/HomeTopNav.vue';
 import IncomingGuests from '@/components/dashboard/HomeTableIncoming.vue';
-import Pagination from '@/components/pagination.vue';
 
 export default {
   name: 'Admin',
@@ -30,7 +29,7 @@ export default {
     AdminHeadingHome,
     HomeContent,
     IncomingGuests,
-    Pagination,
+
   },
 };
 </script>
@@ -66,10 +65,4 @@ export default {
   width: 85%;
   margin-top:0px;
 }
-.pagination {
-  width:auto;
-   margin-top:3%;
-   margin-left:5%;
-}
-
 </style>

@@ -1,8 +1,7 @@
 <template>
 <!-- eslint-disable max-len -->
-<div>
-  <div class="action">
-          <a href="#" class="btn btn-sm text-white " type="button" data-bs-toggle="modal"
+<div class="pt-3">
+           <a href="#" class="btn btn-sm text-white mb-3 add " type="button" data-bs-toggle="modal"
           data-bs-target="#exampleModal">Add Accommodation</a>
                <!-- Modal -->
     <div class="modal fade" tabindex="-1"  id="exampleModal">
@@ -62,10 +61,9 @@
     </div>
      </div>
   </div>
-      </div>
-    <div class="table-settings">
+
          <table class="table table-striped table-bordered">
-        <thead class="align-middle ">
+        <thead>
           <th>Accommodation Type</th>
           <th>Image</th>
           <th>Description</th>
@@ -98,7 +96,6 @@
         </tbody>
      </table>
     </div>
-</div>
 </template>
 <script>
 import axios from 'axios';
@@ -167,44 +164,25 @@ export default {
 </script>
 <style scoped>
 table{
-  margin-top : 30px;
+  padding:0px;
+  margin-top:30px;
   margin-left:70px;
 }
 
-th{
-    padding:5px;
-    vertical-align:left;
-     text-align: left;
-      /* border:1px solid blue; */
-}
-td{
-    text-align: center;
-    font-family: 'Roboto';
-    font-size:14px;
-    padding:0px;
-     /* border:1px solid blue; */
-}
 table,td,th{
      font-family: 'Roboto';
+      font-size:14px;
+      padding:5px;
+
 }
 img{
   width:150px;
    height:100px;
 }
- ul{
-    display: flex;
-  }
-.action{
-   min-width:40px;
-  height:30px;
-  float:right;
+.add{
+  float: right;
   background-color: #068d68;
-  margin-bottom: 10px;
-  margin-right: 0px;
-}
+  margin-right: 10px;
 
-  hr{
-  margin-left: 7%;
-  width:1060px;
 }
 </style>

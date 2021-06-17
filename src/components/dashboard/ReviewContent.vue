@@ -29,25 +29,25 @@ export default {
     };
   },
   methods: {
-    confirmDialog(){
-        this.$swal({
-          title: 'Are you sure?',
-          text: 'You can\'t revert this action',
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonText: 'Yes Delete it!',
-          cancelButtonText: 'No, Keep it!',
-          showCloseButton: true,
-          showLoaderOnConfirm: true
-        }).then((result)=>{
-          if(result.value){
-            this.$swal('Deleted','Review has been Permanently deleted','success')
-          }else{
-            this.$swal('Cancelled', 'Your file is still intact', 'info')
-          }
-        })
-    }
-  }
+    confirmDialog() {
+      this.$swal({
+        title: 'Are you sure?',
+        text: 'You can\'t revert this action',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes Delete it!',
+        cancelButtonText: 'No, Keep it!',
+        showCloseButton: true,
+        showLoaderOnConfirm: true,
+      }).then((result) => {
+        if (result.value) {
+          this.$swal('Deleted', 'Review has been Permanently deleted', 'success');
+        } else {
+          this.$swal('Cancelled', 'Your file is still intact', 'info');
+        }
+      });
+    },
+  },
 };
 </script>
 <style scoped>

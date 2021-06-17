@@ -4,7 +4,7 @@
         <div class="navigation">
        <ul>
          <!-- /admin/dashboard/incoming-guests -->
-        <li class=""><router-link to="/admin/dashboard/incoming-guests">Incoming Guests</router-link></li>
+        <li class=""><router-link to="/admin/dashboard">Incoming Guests</router-link></li>
         <li><router-link to="/admin/dashboard/reviews">Reviews</router-link></li>
         <li><router-link to="/admin/dashboard/coffee-requests">Coffee Requests</router-link></li>
       </ul>
@@ -14,7 +14,7 @@
 <script>
 
 export default {
-  name:'HomeTopNav',
+  name: 'HomeTopNav',
   components: {
   },
 
