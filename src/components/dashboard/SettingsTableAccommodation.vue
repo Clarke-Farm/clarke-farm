@@ -2,7 +2,7 @@
 <!-- eslint-disable max-len -->
 <div>
   <div class="action">
-           <a href="#" class="btn btn-sm text-white " type="button" data-bs-toggle="modal"
+          <a href="#" class="btn btn-sm text-white " type="button" data-bs-toggle="modal"
           data-bs-target="#exampleModal">Add Accommodation</a>
                <!-- Modal -->
     <div class="modal fade" tabindex="-1"  id="exampleModal">

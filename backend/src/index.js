@@ -1,14 +1,15 @@
 // IMPORTING DEPENDENCIES
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
-const helmet = require("helmet");
+const helmet = require('helmet');
 require('dotenv').config();
 
 const app = express();
-const logger = require("./middlewares/logger")
-const upload = require("./middlewares/upload");
-const appRoutes = require("./routes");
-const dbConnection = require("./config/db.config");
+const logger = require('./middlewares/logger');
+const upload = require('./middlewares/upload');
+const appRoutes = require('./routes');
+const dbConnection = require('./config/db.config');
 
 // middlewares
 app.use(cors());
@@ -19,10 +20,10 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 // SERVING STATIC FILES WITH MIDDLEWARE FUNCTION express.static
-app.use(express.static('uploads'));
+app.use(express.static(path.resolve('./uploads')));
 
 // ESTABLISHING DATABASE CONNECTION
-dbConnection(process.env.DATABASE)
+dbConnection(process.env.DATABASE);
 
 // UPLOAD FILE
 app.post('/uploads', (req, res) => {
@@ -36,7 +37,7 @@ app.post('/uploads', (req, res) => {
 });
 
 // The entire application routes.
-app.use("/", appRoutes);
+app.use('/', appRoutes);
 
 // // HANDLING NON-EXISTING ROUTES
 // app.get('*', (req, res) => {
