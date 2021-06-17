@@ -5,9 +5,9 @@
  * @param {function} next Function that passes execution to the next middleware in the chain.
  */
 
- const logger = (req, res, next) => {
+const logger = (req, res, next) => {
   const startDate = new Date().getTime();
-  res.on("finish", () => {
+  res.on('finish', () => {
     const elapsedTime = new Date().getTime() - startDate;
     console.info(`${req.method} ${req.originalUrl} ${elapsedTime}ms`);
   });
