@@ -7,11 +7,6 @@
       <br />
       <h5>Bookings</h5>
       <hr />
-      <form class="search" action="/search-visitor">
-        <button class="btn btn-light" type="submit">Search</button
-        ><input name="accommodationType" placeholder="accommodation type" />
-      </form>
-      <br />
       <!-- VERTICAL TABLE -->
       <table
         class="table table-striped table-hover table-bordered"

@@ -80,41 +80,76 @@
       </div>
       <br />
       <h4>Incoming Guests</h4>
-      <table>
-        <tr>
-          <th>Name</th>
-          <th>Email Address</th>
-          <th>Phone Number</th>
-          <th>Booking Type</th>
-          <th>Checkin</th>
-          <th>Action</th>
-        </tr>
-        <tr>
-          <td>Ndagire Mariat</td>
-          <td>mndagire28@gmail.com</td>
-          <td>0705976941</td>
-          <td>Training</td>
-          <td>23.06.21</td>
-          <td>
-            <a><fa icon="eye" class="eye" /></a>
-            <fa icon="trash-alt" class="text-danger" />
-          </td>
-        </tr>
-      </table>
+      <!-- FILTER BOOKINGS (search by accommodation) -->
+      <div class="search-wrapper">
+        <input
+          type="text"
+          v-model="search"
+          placeholder="Search checkin"
+        />
+        <div v-for="book in filteredList" :key="book._id">
+          <small>
+            <br />
+            <table>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Number of Visitors</th>
+                <th>Accommodation Type</th>
+                <th>Checkin</th>
+              </tr>
+              <tr>
+                <td>{{ book.name }}</td>
+                <td>{{ book.email }}</td>
+                <td>{{ book.phone }}</td>
+                <td>{{ book.visitorNum }}</td>
+                <td>{{ book.accommodationType }}</td>
+                <td>{{ book.checkin }}</td>
+              </tr>
+            </table>
+          </small>
+        </div>
+      </div>
       <br />
       <p>Showing 1 entry of 20</p>
+      <!-- DATA TABLE -->
+      <table v-for="visitor in visitorList" :key="visitor._id"></table>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
+const api = 'http://localhost:3000';
 export default {
   data() {
     return {
       claims: '',
+      search: '',
+      visitorList: [],
     };
   },
+  // FILTER BOOKINGS (search by accommodation)
+  computed: {
+    filteredList() {
+      // eslint-disable-next-line max-len
+      return this.visitorList.filter((book) => book.checkin.toLowerCase().includes(this.search.toLowerCase()));
+    },
+  },
+  //
   created() {
+    const endpoint = '/visitors';
+    axios
+      .get(api + endpoint)
+      .then((res) => {
+        this.visitorList = res.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // OKTA CLAIMS
     this.setup();
   },
   methods: {
