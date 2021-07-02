@@ -38,16 +38,6 @@ router.get('/employee/:id', async (req, res) => {
   }
 });
 
-// SEARCH EMPLOYEE e.g '/search-employee?name=Sylvester' will retrieve Sylvester
-router.get('/search-employee', async (req, res) => {
-  try {
-    const employees = await Employee.find({ name: req.query.name });
-    res.json(employees);
-  } catch (error) {
-    res.status(400).send('Unable to find the record in the list');
-  }
-});
-
 // UPDATE EMPLOYEE
 // Update-Profile onClick, POSTs this employee.
 router.post('/update-employee/:id', async (req, res, next) => {

@@ -38,17 +38,6 @@ router.get('/coffee-process/:id', async (req, res) => {
   }
 });
 
-// SEARCH COFFEE PROCESS e.g '/search-coffee-process?name=wet-processing'
-// will retrieve wet-processing
-router.get('/search-coffee-process', async (req, res) => {
-  try {
-    const coffeeProcesses = await CoffeeProcess.find({ name: req.query.name });
-    res.json(coffeeProcesses);
-  } catch (error) {
-    res.status(400).send('Unable to find the record in the list');
-  }
-});
-
 // UPDATE COFFEE PROCESS
 // Update-button onClick, POSTs this coffee-process.
 router.post('/update-coffee-process/:id', async (req, res, next) => {

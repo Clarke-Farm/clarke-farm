@@ -38,16 +38,6 @@ router.get('/activity/:id', async (req, res) => {
   }
 });
 
-// SEARCH ACTIVITY e.g '/search-activity?name=biking' will retrieve biking activity
-router.get('/search-activity', async (req, res) => {
-  try {
-    const activities = await Activity.find({ name: req.query.name });
-    res.json(activities);
-  } catch (error) {
-    res.status(400).send('Unable to find the record in the list');
-  }
-});
-
 // UPDATE ACTIVITY
 // Update-button onClick, POSTs this activity.
 router.post('/update-activity/:id', async (req, res, next) => {

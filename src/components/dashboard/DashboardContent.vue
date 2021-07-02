@@ -11,7 +11,7 @@
           <div class="card big-card">
             <div class="card-body">
               <div>
-                <span class="mt-0 heading-span">Bookings Made Today</span>
+                <span class="mt-0 heading-span">Bookingsings Made Today</span>
                 <!-- <img src="../assets/icons/trend.svg" width="60" height="60"/> -->
                 <h1>500 <span>guests</span></h1>
                 <div class="progress mb-3 mt-3">
@@ -25,7 +25,7 @@
                   ></div>
                 </div>
                 <p>
-                  Above is the total number of bookings made to the farm from
+                  Above is the total number of bookingsings made to the farm from
                   all the three departments i.e trainings, tours and coffee.
                 </p>
                 <a href="#" class="mt-3">
@@ -80,36 +80,44 @@
       </div>
       <br />
       <h4>Incoming Guests</h4>
-      <!-- FILTER BOOKINGS (search by accommodation) -->
+      <!-- FILTER BOOKINGS (search by checkin) -->
       <div class="search-wrapper">
-        <input
-          type="text"
-          v-model="search"
-          placeholder="Search checkin"
-        />
-        <div v-for="book in filteredList" :key="book._id">
-          <small>
-            <br />
-            <table>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Number of Visitors</th>
-                <th>Accommodation Type</th>
-                <th>Checkin</th>
-              </tr>
-              <tr>
-                <td>{{ book.name }}</td>
-                <td>{{ book.email }}</td>
-                <td>{{ book.phone }}</td>
-                <td>{{ book.visitorNum }}</td>
-                <td>{{ book.accommodationType }}</td>
-                <td>{{ book.checkin }}</td>
-              </tr>
-            </table>
-          </small>
-        </div>
+        <input type="text" v-model="search" placeholder="Search checkin" />
+        <br />
+        <small>
+          <br />
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Number of Visitors</th>
+              <th>Accommodation Type</th>
+              <th>Checkin</th>
+              <th>Actions</th>
+            </tr>
+            <tr v-for="bookings in filteredList" :key="bookings._id">
+              <td>{{ bookings.name }}</td>
+              <td>{{ bookings.email }}</td>
+              <td>{{ bookings.phone }}</td>
+              <td>{{ bookings.visitorNum }}</td>
+              <td>{{ bookings.accommodationType }}</td>
+              <td>{{ bookings.checkin }}</td>
+              <td>
+                <router-link
+                  :to="{ name: '', params: { id: bookings._id } }"
+                  class="edit"
+                  ><!-- EDIT ICON -->
+                  <fa icon="edit" />
+                </router-link>
+                <a href="" @click.prevent="deleteVisitor(bookings._id)"
+                  ><!-- DELETE ICON -->
+                  <fa icon="trash" style="color: red" />
+                </a>
+              </td>
+            </tr>
+          </table>
+        </small>
       </div>
       <br />
       <p>Showing 1 entry of 20</p>
@@ -131,11 +139,11 @@ export default {
       visitorList: [],
     };
   },
-  // FILTER BOOKINGS (search by accommodation)
+  // FILTER BOOKINGS (search by checkin)
   computed: {
     filteredList() {
       // eslint-disable-next-line max-len
-      return this.visitorList.filter((book) => book.checkin.toLowerCase().includes(this.search.toLowerCase()));
+      return this.visitorList.filter((bookings) => bookings.checkin.toLowerCase().includes(this.search.toLowerCase()));
     },
   },
   //
@@ -153,6 +161,24 @@ export default {
     this.setup();
   },
   methods: {
+    // DELETE OPERATION
+    async deleteVisitor(id) {
+      const endpoint = `/delete-visitor/${id}`;
+      try {
+        await axios.get(api + endpoint).then(() => {
+          // eslint-disable-next-line no-underscore-dangle
+          this.visitorList.splice(
+            // eslint-disable-next-line no-underscore-dangle
+            this.visitorList.findIndex((i) => i._id === id),
+            1,
+          );
+        });
+        this.message = 'Bookingsing deleted successfully.';
+      } catch {
+        this.message = 'Failed to Delete! Please try again.';
+      }
+    },
+    // OKTA CLAIMS
     async setup() {
       this.claims = await this.$auth.getUser();
     },
@@ -208,9 +234,8 @@ td {
   border: 1px solid #068d68;
 }
 
-.eye {
+.edit {
   margin-right: 10px;
-  color: #068d68;
 }
 
 .big-card {

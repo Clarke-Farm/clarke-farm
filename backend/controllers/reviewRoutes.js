@@ -37,16 +37,6 @@ router.get('/reviews/:id', async (req, res) => {
   }
 });
 
-// SEARCH REVIEW e.g '/search-review?name=stephen' will retrieve stephen's review
-router.get('/search-review', async (req, res) => {
-  try {
-    const reviews = await Review.find({ name: req.query.name });
-    res.json(reviews);
-  } catch (error) {
-    res.status(400).send('Unable to find the record in the list');
-  }
-});
-
 // DELETE REVIEW
 router.get('/delete-review/:id', async (req, res) => {
   try {

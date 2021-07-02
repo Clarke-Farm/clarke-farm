@@ -38,16 +38,6 @@ router.get('/training/:id', async (req, res) => {
   }
 });
 
-// SEARCH TRAINING e.g '/search-training?name=wet-processing' will retrieve wet-processing
-router.get('/search-training', async (req, res) => {
-  try {
-    const trainings = await Training.find({ name: req.query.name });
-    res.json(trainings);
-  } catch (error) {
-    res.status(400).send('Unable to find the record in the list');
-  }
-});
-
 // UPDATE TRAINING
 // Update-button onClick, POSTs this training.
 router.post('/update-training/:id', async (req, res, next) => {

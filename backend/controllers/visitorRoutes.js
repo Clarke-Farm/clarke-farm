@@ -44,17 +44,6 @@ router.get('/visitor/:id', async (req, res) => {
   }
 });
 
-// SEARCH VISITOR e.g '/search-visitor?accomodationType=Cottage'
-// will retrieve Cottage booked by visitor
-router.get('/search-visitor', async (req, res) => {
-  try {
-    const visitors = await Visitor.find({ accomodationType: req.query.accomodationType });
-    res.json(visitors);
-  } catch (error) {
-    res.status(400).send('Unable to find the record in the list');
-  }
-});
-
 // UPDATE VISITOR
 // Update-button onClick, POSTs this visitor.
 router.post('/update-visitor/:id', async (req, res, next) => {

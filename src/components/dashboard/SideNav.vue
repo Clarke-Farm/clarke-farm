@@ -1,26 +1,18 @@
 <template>
   <!-- side navigation -->
   <div class="side-nav">
-    <h4>CLARKE FARM</h4>
-    <router-link to="/dashboard"
-      ><a href="#">
-        <li><fa icon="home" /><span>Home</span></li></a
-      >
+    <h2 style="font-family: Monotype Corsiva"> Clarke Farm </h2>
+    <router-link to="/dashboard">
+      <li><fa icon="home" /><span>Home</span></li>
     </router-link>
-    <router-link to="/bookings"
-      ><a href="#">
-        <li><fa icon="book-open" /><span>Bookings</span></li></a
-      >
+    <router-link to="/bookings">
+      <li><fa icon="book-open" /><span>Bookings</span></li>
     </router-link>
-    <router-link to="/reviews"
-      ><a href="#">
-        <li><fa icon="star" /><span>Reviews</span></li></a
-      >
+    <router-link to="/reviews">
+      <li><fa icon="comments" /><span>Reviews</span></li>
     </router-link>
-    <router-link to="/settings"
-      ><a href="#">
-        <li><fa icon="cog" /><span>Settings</span></li></a
-      >
+    <router-link to="/settings">
+      <li><fa icon="cog" /><span>Settings</span></li>
     </router-link>
     <br /><br />
     <div class="logout">
@@ -61,7 +53,7 @@ export default {
 </script>
 
 <style scoped>
-h4 {
+h2 {
   text-align: center;
 }
 
@@ -98,8 +90,7 @@ span {
   text-align: center;
 }
 
-.logout
-button {
-  background-color: red;
+.logout button {
+  background-color: none;
 }
 </style>

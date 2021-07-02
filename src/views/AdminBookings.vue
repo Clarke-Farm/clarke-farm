@@ -54,7 +54,7 @@
           <td>{{ visitor.checkout }}</td>
         </tr>
         <tr>
-          <th></th>
+          <td></td>
           <td>
             <router-link
               :to="{ name: '', params: { id: visitor._id } }"

@@ -38,16 +38,6 @@ router.get('/accommodation/:id', async (req, res) => {
   }
 });
 
-// SEARCH ACCOMMODATION e.g '/search-accommodation?name=cottage' will retrieve cottages
-router.get('/search-accommodation', async (req, res) => {
-  try {
-    const accommodations = await Accommodation.find({ name: req.query.name });
-    res.json(accommodations);
-  } catch (error) {
-    res.status(400).send('Unable to find the record in the list');
-  }
-});
-
 // UPDATE ACCOMMODATION
 // Update-button onClick, POSTs this accommodation.
 router.post('/update-accommodation/:id', async (req, res, next) => {
