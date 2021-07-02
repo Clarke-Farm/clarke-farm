@@ -11,7 +11,7 @@
           <div class="card big-card">
             <div class="card-body">
               <div>
-                <span class="mt-0 heading-span">Bookingsings Made Today</span>
+                <span class="mt-0 heading-span">Bookings Made Today</span>
                 <!-- <img src="../assets/icons/trend.svg" width="60" height="60"/> -->
                 <h1>500 <span>guests</span></h1>
                 <div class="progress mb-3 mt-3">
@@ -25,7 +25,7 @@
                   ></div>
                 </div>
                 <p>
-                  Above is the total number of bookingsings made to the farm from
+                  Above is the total number of bookings made to the farm from
                   all the three departments i.e trainings, tours and coffee.
                 </p>
                 <a href="#" class="mt-3">
@@ -96,21 +96,21 @@
               <th>Checkin</th>
               <th>Actions</th>
             </tr>
-            <tr v-for="bookings in filteredList" :key="bookings._id">
-              <td>{{ bookings.name }}</td>
-              <td>{{ bookings.email }}</td>
-              <td>{{ bookings.phone }}</td>
-              <td>{{ bookings.visitorNum }}</td>
-              <td>{{ bookings.accommodationType }}</td>
-              <td>{{ bookings.checkin }}</td>
+            <tr v-for="booking in filteredList" :key="booking._id">
+              <td>{{ booking.name }}</td>
+              <td>{{ booking.email }}</td>
+              <td>{{ booking.phone }}</td>
+              <td>{{ booking.visitorNum }}</td>
+              <td>{{ booking.accommodationType }}</td>
+              <td>{{ booking.checkin }}</td>
               <td>
                 <router-link
-                  :to="{ name: '', params: { id: bookings._id } }"
+                  :to="{ name: '', params: { id: booking._id } }"
                   class="edit"
                   ><!-- EDIT ICON -->
                   <fa icon="edit" />
                 </router-link>
-                <a href="" @click.prevent="deleteVisitor(bookings._id)"
+                <a href="" @click.prevent="deleteVisitor(booking._id)"
                   ><!-- DELETE ICON -->
                   <fa icon="trash" style="color: red" />
                 </a>
@@ -143,7 +143,7 @@ export default {
   computed: {
     filteredList() {
       // eslint-disable-next-line max-len
-      return this.visitorList.filter((bookings) => bookings.checkin.toLowerCase().includes(this.search.toLowerCase()));
+      return this.visitorList.filter((booking) => booking.checkin.toLowerCase().includes(this.search.toLowerCase()));
     },
   },
   //
