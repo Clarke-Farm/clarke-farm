@@ -1,19 +1,18 @@
 import { createApp } from 'vue';
-
 import { library } from '@fortawesome/fontawesome-svg-core';
-
 import {
-  faPhone, faEye, faBars, faTrash, faCog, faHome, faBook, faUserCog,
-  faTrashAlt, faBookOpen, faStar, faSignOutAlt, faRunning, faComments,
-  faHouseUser, faUserFriends, faBell, faUser, faArrowRight,
-  faPlus, faEdit, faAngleLeft, faCogs, faAngleDown,
-  faStarAndCrescent, faAngleRight, faHamburger, faGraduationCap, faCampground,
+  faPhone, faBars, faHome, faTrashAlt, faStar, faSignOutAlt, faRunning, faComments, faBell, faUser, faArrowRight,
+  faPlus, faEdit, faAngleLeft, faCogs, faAngleRight, faHamburger, faTrash,
   faStarHalfAlt, faCheckCircle, faShoppingBag, faTruck, faBoxOpen, faBalanceScale,
-  faMinusCircle, faBullseye,
+  faMinusCircle, faBullseye, faSmile, faHeart, faThumbsUp, faHandshake, faMugHot, faSearch,
+  faSort, faMinus, faCheck, faCartArrowDown,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faFacebookF, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import Toaster from '@meforma/vue-toaster';
+
+// import VeeValidate from 'vee-validate';
 import VueSweetalert2 from 'vue-sweetalert2';
 
 // IMPORTING OKTA DEPENDENCIES
@@ -29,31 +28,29 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
-library.add(faPhone, faBars, faEye, faFacebookF, faTwitter, faCogs, faTrashAlt, faCampground,
-  faGraduationCap, faHouseUser, faUserFriends,
-  faUserCog, faStarAndCrescent, faHome, faBookOpen, faAngleDown, faArrowRight,
-  faInstagram, faTrash, faCog, faHome, faBook, faStar, faSignOutAlt,
+library.add(faPhone, faBars, faFacebookF, faTwitter, faCogs, faTrashAlt,
+  faSearch, faHome, faArrowRight, faInstagram, faHome, faStar, faSignOutAlt, faSort,
   faComments, faBell, faUser, faPlus, faEdit, faAngleLeft, faAngleRight, faRunning,
-  faHamburger, faStarHalfAlt, faCheckCircle, faShoppingBag, faTruck, faBoxOpen,
-  faBalanceScale, faMinusCircle, faBullseye);
+  faHamburger, faStarHalfAlt, faCheckCircle, faShoppingBag, faTruck, faBoxOpen, faTrash, faCartArrowDown,
+  faBalanceScale, faMinusCircle, faBullseye, faSmile, faHeart, faThumbsUp, faHandshake, faMugHot, faMinus, faCheck);
 
-// Sweetalert buttons
+// sweetalert buttons
 const options = {
   confirmButtonColor: '#068d68',
   cancelButtonColor: '#ff7674',
 };
-
 createApp(App)
   .component('fa', FontAwesomeIcon).use(VueSweetalert2, options)
+  .use(Toaster)
   .use(store)
   .use(router)
   .use(OktaVue, {
     oktaAuth,
     onAuthRequired: () => {
-      router.push('/login');
+      router.push('/admin');
     },
     onAuthResume: () => {
-      router.push('/login');
+      router.push('/admin');
     },
   })
   .mount('#app');

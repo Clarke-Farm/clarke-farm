@@ -10,7 +10,6 @@
             <div class="founder-video img-fluid">
               <iframe class="embed-responsive-item img-fluid"
               src="https://www.youtube.com/embed/NC3kg2Q3fqo" allowfullscreen></iframe>
-              <!-- https://www.youtube.com/watch?v=NC3kg2Q3fqo -->
             </div>
           <figcaption>
             <em class>Dr. Ian Clarke's profile</em>

@@ -39,7 +39,7 @@
             <span>50 Bags</span>
           </div>
           <div class="link-container">
-            <a href="#offers" class="learn-more">Contact us &rarr;</a>
+            <a href="#coffee-registration-form" class="learn-more">Contact us &rarr;</a>
           </div>
         </div>
       </div>
@@ -80,7 +80,7 @@
             <span>50 Sacks</span>
           </div>
           <div class="link-container">
-            <a href="#offers" class="learn-more">Contact us &rarr;</a>
+            <a href="#coffee-registration-form" class="learn-more">Contact us &rarr;</a>
           </div>
         </div>
       </div>

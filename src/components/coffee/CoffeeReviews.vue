@@ -1,27 +1,35 @@
 <template>
   <div class="reviews-container">
+    <template v-if="showModal">
+      <ReviewModal @close-modal="closeModal" @user-review="submitReview">
+        buyers
+      </ReviewModal>
+    </template>
     <div id="review-details">
       <div id="review-left">
         <p class="section-title">
           What people have to say about our coffee.
         </p>
         <p id="review-text">
-          We are currently traversing the neighboring communities, registering
-          farmers with land that can be utilized for coffee production, as well as
-          any current coffee farmers that could benefit from our training programs.
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+          {{ filterDisplayData[0].review }}
         </p>
+        <div id="reviewee-details">
+          <span>
+            {{ capitalizeEachWord(filterDisplayData[0].name) }}
+          </span>
+          <span id="reviewee-period">
+            {{ capitalizeFirstLetter(filterDisplayData[0].period) }}
+          </span>
+        </div>
         <div id="cta-container">
-          <div class="contact-btn-container">
-            <a href="">Contact Us</a>
-          </div>
           <div class="forward-back-navigation">
-            <span class="nav-button disabled">
-              <fa icon="angle-left" />
-            </span>
-            <span class="nav-button active">
-              <fa icon="angle-right" />
-            </span>
+            <ArrowNavigation
+            @newPage ="setNewPage"
+            :pageNumber="page"
+            :isLastPage="checkIfLastPage" />
+          </div>
+          <div class="contact-btn-container">
+            <a @click.prevent="showReviewModal">Write Review</a>
           </div>
         </div>
       </div>
@@ -52,8 +60,92 @@
 </template>
 
 <script>
+import ArrowNavigation from '@/components/shared/ArrowNavigation.vue';
+import ReviewModal from '@/components/shared/ReviewModal.vue';
+import ReviewService from '@/services/review-service';
+import SlideNavigation from '@/mixins/slide-navigation';
+import FormatText from '@/mixins/format-text';
+import { mapState } from 'vuex';
+
 export default {
-  name: 'OurCertificates',
+  name: 'OurReviews',
+  data() {
+    return {
+      limit: 1,
+      page: 1,
+      showModal: false,
+    };
+  },
+  components: {
+    ArrowNavigation,
+    ReviewModal,
+  },
+  mixins: [SlideNavigation, FormatText],
+  methods: {
+    setNewPage(page) {
+      this.page = page;
+    },
+    showReviewModal() {
+      this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
+    },
+    showWaitingAlert() {
+      this.$swal({
+        icon: 'info',
+        title: 'Checking status',
+        text: 'Checking if you purchased with us',
+        showConfirmButton: false,
+      });
+    },
+    showReviewAccepted() {
+      this.$swal({
+        icon: 'success',
+        title: 'Review submitted',
+        timer: 2000,
+        showConfirmButton: false,
+      });
+    },
+    showReviewRejected() {
+      this.$swal({
+        icon: 'error',
+        title: 'Review rejected',
+        text: 'Submitted user data does not match any record',
+      });
+    },
+    submitReview(review) {
+      this.closeModal();
+      this.showWaitingAlert();
+      ReviewService.postReview('coffee', review)
+        .then((response) => {
+          if (response.data.status === 'success') {
+            this.$swal.close();
+            this.showReviewAccepted();
+          }
+          if (response.data.status === 'rejected') {
+            this.$swal.close();
+            this.showReviewRejected();
+          }
+        });
+    },
+  },
+  computed: {
+    ...mapState({
+      reviews: (state) => state.reviews.reviews,
+    }),
+    filterDisplayData() {
+      const data = [...this.reviews];
+      return this.filter(data);
+    },
+    checkIfLastPage() {
+      const data = [...this.reviews];
+      if (this.page * this.limit >= data.length) {
+        return true;
+      }
+      return false;
+    },
+  },
 };
 </script>
 
@@ -234,5 +326,16 @@ img{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.contact-btn-container a:hover{
+  color:white;
+}
+#reviewee-details span{
+  display: block;
+  margin-bottom: 5px;
+}
+#reviewee-period{
+  color: #a9a9a9;
+  font-weight: bold;
 }
 </style>

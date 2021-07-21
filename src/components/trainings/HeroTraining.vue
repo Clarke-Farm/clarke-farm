@@ -15,7 +15,7 @@
         an attractive business to go into.
       </p>
       <div class="contact-btn-container">
-        <a href="">Contact Us</a>
+        <a href="#training-registration-form">Contact Us</a>
       </div>
     </div>
     <div id="right-container">

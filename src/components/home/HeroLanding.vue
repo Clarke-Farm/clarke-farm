@@ -16,10 +16,10 @@
       </p>
       <div class="call-to-action">
         <div id="book-trip">
-          <a href="">Book A Trip</a>
+          <router-link :to="{ name: 'VisitPage' }">Book A Trip</router-link>
         </div>
         <div id="buy-coffee">
-          <a href="">Buy Coffee</a>
+          <router-link :to="{ name: 'CoffeePage' }">Buy Coffee</router-link>
         </div>
         </div>
     </div>

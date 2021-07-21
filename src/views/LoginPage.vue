@@ -1,4 +1,5 @@
 <template>
+  <br />
   <div class="login">
     <div id="okta-signin-container"></div>
   </div>
@@ -9,12 +10,10 @@ import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
 import { oktaSignIn } from '../okta';
 
 export default {
-  name: 'Login',
+  name: 'LoginPage',
   mounted() {
     this.$nextTick(() => {
-      oktaSignIn.showSignInAndRedirect(
-        { el: '#okta-signin-container' },
-      );
+      oktaSignIn.showSignInAndRedirect({ el: '#okta-signin-container' });
     });
   },
   unmounted() {

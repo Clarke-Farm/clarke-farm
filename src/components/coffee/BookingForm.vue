@@ -6,20 +6,21 @@
     <div class="registration-container">
       <div id="registration-image">
         <img
-          src="@/assets/images/mother-garden.jpg"
+          src="@/assets/images/stalk.jpg"
           alt="welcome"
           aria-hidden="true"
         />
       </div>
       <div id="form-container">
         <p id="description">We promise to contact you within 24 hours.</p>
-        <form>
+        <form @submit.prevent="handleSubmitForm">
           <div class="input-container">
             <input
               type="text"
               name="name"
               placeholder="Name"
               required
+              v-model="order.name"
             />
           </div>
           <div class="input-container">
@@ -28,6 +29,8 @@
               placeholder="Email Address"
               name="email"
               required
+              v-model="order.email"
+
             />
           </div>
           <div class="input-container">
@@ -36,26 +39,31 @@
               placeholder="Telephone"
               name="phone"
               required
+              v-model="order.phone"
+
             />
           </div>
           <div class="input-container">
-            <fieldset name="topics">
+            <fieldset name="packages">
               <legend>Select package type</legend>
               <div class="checkbox-list">
                 <div class="checkbox-pair">
                   <input
                     type="radio"
-                    name="accomodation"
+                    name="package"
                     value="Paper bag"
                     checked
+              v-model="order.package"
+
                   />
                   Paper Bag
                 </div>
                 <div class="checkbox-pair">
                   <input
                     type="radio"
-                    name="accomodation"
+                    name="package"
                     value="Sack"
+              v-model="order.package"
                   />
                   Sacks
                 </div>
@@ -68,12 +76,24 @@
               name="order"
               placeholder="Estimated order"
               required
+              v-model="order.order"
+
+            />
+          </div>
+          <div class="input-container">
+            <input
+              type="text"
+              name="bookingtype"
+              placeholder="When do you want this order"
+              onfocus='(this.type="date")'
+              v-model="order.estimatedDelivery"
             />
           </div>
           <div class="input-container">
             <textarea
               placeholder="Questions or special requests"
               name="requests"
+              v-model="order.requests"
             ></textarea>
           </div>
           <div class="submit-container">
@@ -90,6 +110,46 @@
 <script>
 export default {
   name: 'BookingForm',
+  data() {
+    return {
+      order: {
+        name: '',
+        email: '',
+        phone: '',
+        package: 'Paper bag',
+        order: '',
+        estimatedDelivery: '',
+        delivered: false,
+        requests: '',
+        bookingtype: 'Coffee',
+      },
+    };
+  },
+  methods: {
+    async handleSubmitForm() {
+      try {
+        await this.$store.dispatch('saveCoffeeOrder', this.order);
+        this.order = {
+          name: '',
+          email: '',
+          phone: '',
+          package: 'Paper bag',
+          order: '',
+          estimatedDelivery: '',
+          delivered: false,
+          requests: '',
+          bookingtype: 'Coffee',
+        };
+        // Use sweetalert2
+        this.$swal({
+          showCloseButton: true,
+        });
+        this.$swal('Received', 'Your order has been received.!!!', 'success');
+      } catch {
+        this.message = 'failed to submit; please, try again!';
+      }
+    },
+  },
 };
 </script>
 

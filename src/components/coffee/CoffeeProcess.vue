@@ -5,91 +5,19 @@
       <p class="sub-text">
         This is a step by step guide showing our coffee process.
       </p>
-      <div id="process-row-1">
-        <div class="card-container">
-          <div class="card-item process-item">
-            <div class="card-image-container">
-              <img src="@/assets/images/mother-garden.jpg" alt="mother garden" aria-hidden="true">
-            </div>
-            <div class="card-content">
-              <p class="card-title">Mother Garden</p>
-              <p class="card-text">
-                Our mother garden consists of a variety of coffee seedlings.
-                We have all 7 lines of coffee wilt disease resistant varieties
-                and the traditional clones A-F.
-              </p>
-            </div>
-          </div>
-          <div class="card-item process-item">
-            <div class="card-image-container">
-              <img src="@/assets/images/cherry-picking.jpg" alt="cherry picking" aria-hidden="true">
-            </div>
-            <div class="card-content">
-              <p class="card-title">Cherry Picking</p>
-              <p class="card-text">
-                Our mother garden consists of a variety of coffee seedlings.
-                We have all 7 lines of coffee wilt disease resistant varieties
-                and the traditional clones A-F.
-              </p>
-            </div>
-          </div>
-          <div class="card-item process-item">
-            <div class="card-image-container">
-              <img src="@/assets/images/wet-processing.jpg" alt="wet processing" aria-hidden="true">
-            </div>
-            <div class="card-content">
-              <p class="card-title">Wet Washing</p>
-              <p class="card-text">
-                Our mother garden consists of a variety of coffee seedlings.
-                We have all 7 lines of coffee wilt disease resistant varieties
-                and the traditional clones A-F.
-              </p>
-            </div>
-          </div>
-        </div>
+      <div class="card-container">
+        <Card
+        v-for="(process, index) in filterDisplayData"
+        :key="index"
+        :item="process"
+        :staticImg="true"
+        imgDir="processing"/>
       </div>
-      <div id="process-row-2" style="display:none">
-        <div class="card-container">
-          <div class="card-item process-item">
-            <div class="card-image-container">
-              <img src="@/assets/images/mother-garden.jpg" alt="mother garden" aria-hidden="true">
-            </div>
-            <div class="card-content">
-              <p class="card-title">Mother Garden</p>
-              <p class="card-text">
-                Our mother garden consists of a variety of coffee seedlings.
-                We have all 7 lines of coffee wilt disease resistant varieties
-                and the traditional clones A-F.
-              </p>
-            </div>
-          </div>
-          <div class="card-item process-item">
-            <div class="card-image-container">
-              <img src="@/assets/images/cherry-picking.jpg" alt="cherry picking" aria-hidden="true">
-            </div>
-            <div class="card-content">
-              <p class="card-title">Cherry Picking</p>
-              <p class="card-text">
-                Our mother garden consists of a variety of coffee seedlings.
-                We have all 7 lines of coffee wilt disease resistant varieties
-                and the traditional clones A-F.
-              </p>
-            </div>
-          </div>
-          <div class="card-item process-item">
-            <div class="card-image-container">
-              <img src="@/assets/images/wet-processing.jpg" alt="wet processing" aria-hidden="true">
-            </div>
-            <div class="card-content">
-              <p class="card-title">Wet Washing</p>
-              <p class="card-text">
-                Our mother garden consists of a variety of coffee seedlings.
-                We have all 7 lines of coffee wilt disease resistant varieties
-                and the traditional clones A-F.
-              </p>
-            </div>
-          </div>
-        </div>
+      <div class="arr-nav-container">
+        <ArrowNavigation
+          @newPage ="setNewPage"
+          :pageNumber="page"
+          :isLastPage="checkIfLastPage" />
       </div>
     </div>
     <div id="capacity">
@@ -124,8 +52,44 @@
 </template>
 
 <script>
+import Card from '@/components/shared/Card.vue';
+import ArrowNavigation from '@/components/shared/ArrowNavigation.vue';
+import SlideNavigation from '@/mixins/slide-navigation';
+import { mapState } from 'vuex';
+
 export default {
   name: 'CoffeeProcess',
+  data() {
+    return {
+      page: 1,
+    };
+  },
+  components: {
+    ArrowNavigation,
+    Card,
+  },
+  mixins: [SlideNavigation],
+  methods: {
+    setNewPage(page) {
+      this.page = page;
+    },
+  },
+  computed: {
+    ...mapState({
+      process: (state) => state.processing.processing,
+    }),
+    filterDisplayData() {
+      const data = [...this.process];
+      return this.filter(data);
+    },
+    checkIfLastPage() {
+      const data = [...this.process];
+      if (this.page * this.limit >= data.length) {
+        return true;
+      }
+      return false;
+    },
+  },
 };
 </script>
 
@@ -203,38 +167,6 @@ export default {
     justify-content: start;
   }
 }
-.card-item{
-  min-width:280px;
-  max-width: 280px;
-  min-height: 280px;
-  max-height: 280px;
-  background-color:white;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-@media screen and (max-width:1240px){
-  .card-item{
-    margin-right:20px;
-  }
-}
-.card-image-container{
-  height:45%;
-}
-.card-image-container img{
-  width:100%;
-  height:100%;
-  object-fit: cover;
-}
-.card-content{
-  margin-top: 5px;
-  padding-left: 10px;
-}
-.card-title{
-  font-weight: bold;
-}
-.card-text{
-  font-size: 14px;
-}
-
 /* Capacity styles */
 #capacity{
   margin-top: 50px;
@@ -275,5 +207,18 @@ export default {
   margin-top:-10px;
   color:rgb(100, 100, 100);
   font-family: 'Times New Roman', Times, serif;
+}
+.arr-nav-container{
+  margin-top:40px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media screen and (min-width: 1280px) {
+  .arr-nav-container{
+    width:70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 </style>

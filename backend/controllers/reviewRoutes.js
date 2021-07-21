@@ -1,51 +1,45 @@
 const express = require('express');
+const coffeeReviews = require('../Models/reviewModel')('coffeeReviews');
+const visitorReviews = require('../Models/reviewModel')('visitorReviews');
+const visitorModel = require('../Models/visitorModel');
+const coffeeOrderModel = require('../Models/coffeeOrderModel');
 
-const Review = require('../models/reviewModel');
-
-// Creating a Router
 const router = express.Router();
 
-// ADD REVIEW TO REVIEW'S TABLE
-router.post('/reviews/add', async (req, res) => {
+router.post('/visitor', async (req, res) => {
+  const category = 'visitor';
+  const verified = false;
+  const reviewDetails = { ...req.body, category, verified };
   try {
-    const newReview = new Review(req.body);
-    await newReview.save()
-      .then(() => res.json('Review Added'));
+    visitorModel.find({ email: req.body.email }).exec(async (err, response) => {
+      if (response.length > 0) {
+        const review = await visitorReviews(reviewDetails);
+        review.save().then(() => res.json({ status: 'success' }));
+      } else {
+        res.json({ status: 'rejected' });
+      }
+    });
   } catch (error) {
-    console.error(error);
-    res.json('Unsuccessful! Please Try Again');
+    console.log(error);
   }
 });
 
-// FIND ALL REVIEWS
-router.get('/reviews', async (req, res) => {
+router.post('/coffee', async (req, res) => {
+  const category = 'coffee';
+  const verified = false;
+  const reviewDetails = { ...req.body, category, verified };
   try {
-    const reviews = await Review.find();
-    res.json(reviews);
+    coffeeOrderModel.find({ email: req.body.email }).exec(async (err, response) => {
+      if (response.length > 0) {
+        const review = await coffeeReviews(reviewDetails);
+        review.save().then(() => res.json({ status: 'success' }));
+      } else {
+        res.json({ status: 'rejected' });
+      }
+    });
   } catch (error) {
-    res.status(400).send('Unable to find records');
+    console.log(error);
   }
 });
 
-// FIND REVIEW BY ID
-router.get('/reviews/:id', async (req, res) => {
-  try {
-    const review = await Review.findOne({ _id: req.params.id });
-    res.json(review);
-  } catch (error) {
-    res.status(400).send('Unable to find the record in the list');
-  }
-});
-
-// DELETE REVIEW
-router.get('/delete-review/:id', async (req, res) => {
-  try {
-    await Review.deleteOne({ _id: req.params.id });
-    res.json('Review Deleted');
-  } catch (error) {
-    res.status(400).send('Unable to delete the record from the database');
-  }
-});
-
-//
 module.exports = router;

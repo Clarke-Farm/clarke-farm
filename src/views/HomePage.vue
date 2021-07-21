@@ -11,13 +11,40 @@
 </template>
 
 <script>
-import NavBar from '@/components/MainNav.vue';
 import HeroLandingPage from '@/components/home/HeroLanding.vue';
 import AboutSection from '@/components/home/AboutSection.vue';
-import OurFounder from '@/components/home/OurFounder.vue';
-import CoreValues from '@/components/home/CoreValues.vue';
-import OurTeam from '@/components/home/OurTeam.vue';
-import Footer from '@/components/MainFooter.vue';
+
+import { defineAsyncComponent } from 'vue';
+
+const NavBar = defineAsyncComponent({
+  loader: () => import('@/components/shared/MainNav.vue'),
+  delay: 100,
+  timeout: 2000,
+});
+
+const OurFounder = defineAsyncComponent({
+  loader: () => import('@/components/home/OurFounder.vue'),
+  delay: 300,
+  timeout: 2000,
+});
+
+const OurTeam = defineAsyncComponent({
+  loader: () => import('@/components/home/OurTeam.vue'),
+  delay: 300,
+  timeout: 2000,
+});
+
+const CoreValues = defineAsyncComponent({
+  loader: () => import('@/components/home/CoreValues.vue'),
+  delay: 300,
+  timeout: 2000,
+});
+
+const Footer = defineAsyncComponent({
+  loader: () => import('@/components/shared/MainFooter.vue'),
+  delay: 300,
+  timeout: 2000,
+});
 
 export default {
   name: 'HomePage',

@@ -1,5 +1,5 @@
 <template>
-  <div class="our-packages">
+  <div class="our-packages unselectable">
     <p class="section-title">Our Packages</p>
     <p class="sub-text">
       We offer team building exercise venues for corporate events,
@@ -19,7 +19,7 @@
             <li>Special requests</li>
           </ul>
           <div class="button-container">
-            <a href="#visit-registration-form">Contact Us</a>
+            <!-- <a href="#visit-registration-form">Contact Us</a> -->
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@
             <li>All Non-priced activities</li>
           </ul>
           <div class="button-container">
-            <a href="#visit-registration-form">Book A Trip</a>
+            <!-- <a href="#visit-registration-form">Book A Trip</a> -->
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@
             <li>Chickens</li>
           </ul>
           <div class="button-container">
-            <a href="/training-programs">For More Information</a>
+            <!-- <a href="/training-programs">For More Information</a> -->
           </div>
         </div>
       </div>

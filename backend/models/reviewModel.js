@@ -1,22 +1,23 @@
 const mongoose = require('mongoose');
 
-const { Schema } = mongoose;
-
-const reviewSchema = new Schema({
+const reviewSchema = mongoose.Schema({
   name: {
     type: String,
+    required: true,
   },
-  rating: {
+  email: {
     type: String,
+    required: true,
   },
-  comment: {
+  review: {
     type: String,
+    required: true,
   },
-  reviewDate: {
-    type: String,
-  },
-}, {
-  collection: 'reviews',
+  category: String,
+  verified: Boolean,
+  createdAt: String,
 });
 
-module.exports = mongoose.model('Review', reviewSchema);
+module.exports = function mapToSchema(schemaName) {
+  return mongoose.model(`${schemaName}`, reviewSchema);
+};

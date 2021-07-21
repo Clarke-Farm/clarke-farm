@@ -8,23 +8,9 @@ const visitorSchema = new Schema({
   },
   email: {
     type: String,
+    required: true,
   },
   phone: {
-    type: String,
-  },
-  bookingType: {
-    type: String,
-  },
-  visitorNum: {
-    type: String,
-  },
-  accommodationType: {
-    type: String,
-  },
-  requests: {
-    type: String,
-  },
-  topics: {
     type: String,
   },
   checkin: {
@@ -33,7 +19,21 @@ const visitorSchema = new Schema({
   checkout: {
     type: String,
   },
-}, {
+  guestNumber: {
+    type: String,
+  },
+  accomodation: {
+    type: String,
+  },
+  bookingtype: {
+    type: String,
+  },
+  requests: {
+    type: String,
+  },
+},
+{ timestamps: true },
+{
   collection: 'visitors',
 });
 

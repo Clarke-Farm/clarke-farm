@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="contact-btn-container">
-          <a href="">Contact Us</a>
+          <a href="#training-registration-form">Contact Us</a>
         </div>
       </div>
       <div id="scheme-right">
@@ -111,10 +111,11 @@ export default {
 }
 #scheme-right img{
   width:100%;
-  height:100%;
+  height:99%;
   max-width:376px;
   max-height:400px;
   object-fit: cover;
+  object-position: 0% 12%;
 }
 .section-sub-title{
   font-size: 20px;

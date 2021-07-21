@@ -1,16 +1,16 @@
 <template>
-  <div class="our-offers">
+  <div id="our-offers">
     <p class="section-title">What We Offer</p>
     <p class="sub-text">
       See all the activities you can enjoy, the accommodations to
       choose from and what our guests have to say about us.
     </p>
-    <TabMenu :tabsList="tabs" />
+    <TabMenu :tabsList="tabs" @selected = "setSelectedTab"/>
     <div class="card-container">
-      <Card v-for="activity in activities" :key="activity" :item="activity"/>
+      <Card v-for="(activity, index) in filterDisplayData" :key="index" :item="activity"/>
     </div>
-    <div class="more-button-container">
-      <button>Show All</button>
+    <div class="arr-nav-container">
+      <ArrowNavigation @newPage ="setNewPage" :pageNumber="page" :isLastPage="checkIfLastPage" />
     </div>
   </div>
 </template>
@@ -18,30 +18,58 @@
 <script>
 import TabMenu from '@/components/shared/TabMenu.vue';
 import Card from '@/components/shared/Card.vue';
+import ArrowNavigation from '@/components/shared/ArrowNavigation.vue';
+import SlideNavigation from '@/mixins/slide-navigation';
 import { mapState } from 'vuex';
 
 export default {
   name: 'OurOffers',
   created() {
-    this.$store.dispatch('getActivities');
+    this.$store.dispatch('fetchAllActivities');
+    this.$store.dispatch('fetchAllAccomodations');
+    this.$store.dispatch('fetchAllFoods');
   },
   data() {
     return {
-      tabs: ['Activities', 'Accomodation', 'Food', 'Reviews'],
+      tabs: ['Activities', 'Accomodation', 'Food'],
+      page: 1,
+      filterBy: 'activities',
     };
   },
+  mixins: [SlideNavigation],
   components: {
     TabMenu,
     Card,
+    ArrowNavigation,
+  },
+  methods: {
+    setNewPage(page) {
+      this.page = page;
+    },
   },
   computed: {
-    ...mapState(['activities']),
+    ...mapState({
+      activities: (state) => state.activities.activities,
+      accomodation: (state) => state.accomodations.accomodations,
+      food: (state) => state.foods.foods,
+    }),
+    filterDisplayData() {
+      const data = [...this[this.filterBy]];
+      return this.filter(data);
+    },
+    checkIfLastPage() {
+      const data = [...this[this.filterBy]];
+      if (this.page * this.limit > data.length) {
+        return true;
+      }
+      return false;
+    },
   },
 };
 </script>
 
 <style scoped>
-.our-offers{
+#our-offers{
   position:relative;
   margin-top:60px;
 }
@@ -82,43 +110,6 @@ export default {
     text-align: left;
   }
 }
-.navigation{
-  margin-left: auto;
-  margin-right: auto;
-  max-height:30px;
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-  overflow-x: auto;
-  padding:0;
-}
-@media screen and (max-width:730px){
-  .navigation {
-    padding-left: 10px;
-    justify-content: start;
-  }
-  .navigation ::-webkit-scrollbar{
-    width:0px;
-  }
-}
-.tab{
-  min-width:150px;
-  height:30px;
-  margin-right: 20px;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  color:white;
-}
-.tab:hover{
-  background-color: var(--dark-green);
-}
-.active-nav{
-  background-color: var(--dark-green);
-}
-.inactive-nav{
-  background-color: rgba(0, 0, 0, 0.3);
-}
 .card-container{
   margin-top: 40px;
   display:flex;
@@ -145,23 +136,17 @@ export default {
     justify-content: start;
   }
 }
-.more-button-container{
-  margin-top:50px;
-  display: flex;
-  justify-content: center;
+.arr-nav-container{
+  margin-top:40px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
 }
-.more-button-container button{
-  border:1px solid rgba(0, 0, 0, 0.3);
-  width:180px;
-  height:30px;
-  border-radius: 3px;
-  background-color: var(--smoky-white);
-  color:var(--dark-green);
-}
-.more-button-container button:hover{
-  transform: scale(0.95);
-  box-shadow: 3px 3px 5px rgba(0,0,0,0.7);
-  background-color: var(--dark-green);
-  color:white;
+@media screen and (min-width: 1280px) {
+  .arr-nav-container{
+    width:70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 </style>

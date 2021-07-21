@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="contact-btn-container">
-        <a href="#visit-registration-form">Contact Us</a>
+        <a href="#coffee-registration-form">Contact Us</a>
       </div>
     </div>
     <div id="right-container">

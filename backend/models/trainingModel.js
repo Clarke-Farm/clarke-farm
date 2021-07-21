@@ -3,7 +3,11 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const trainingSchema = new Schema({
-  fileName: {
+  filename: {
+    type: String,
+  },
+
+  programtitle: {
     type: String,
   },
   description: {

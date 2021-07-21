@@ -25,7 +25,7 @@
               <li>Coffee tasting</li>
             </ul>
             <div class="link-container">
-              <a href="#offers" class="learn-more">Learn more &rarr;</a>
+              <a href="#our-offers" class="learn-more">Learn more &rarr;</a>
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@
               <li>Cliff container house</li>
             </ul>
             <div class="link-container">
-              <a href="#offers" class="learn-more">Learn more &rarr;</a>
+              <a href="#our-offers" class="learn-more">Learn more &rarr;</a>
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@
               <li>Boo</li>
             </ul>
             <div class="link-container">
-              <a href="#offers" class="learn-more">Learn more &rarr;</a>
+              <a href="#our-offers" class="learn-more">Learn more &rarr;</a>
             </div>
           </div>
         </div>

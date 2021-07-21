@@ -35,41 +35,18 @@
       <div id="our-projects">
         <p class="section-sub-heading center-text">Projects</p>
         <div class="card-container">
-          <div class="card-item">
-            <div class="card-image-container">
-              <img src="@/assets/images/mother-garden.jpg" alt="coffee" aria-hidden="true">
-            </div>
-            <div class="card-content">
-              <p class="card-title">Coffee</p>
-              <p class="card-text">
-                750 acres of robusta coffee and currently harvesting
-                700,000 kilograms annually.
-              </p>
-            </div>
-          </div>
-          <div class="card-item">
-            <div class="card-image-container">
-              <img src="@/assets/images/motocross1.jpg" alt="tourism" aria-hidden="true">
-            </div>
-            <div class="card-content">
-              <p class="card-title">Tourism</p>
-              <p class="card-text">
-                Enjoy jeep rides, bouldering, riverwalks among many other
-                activities. Check out our visit page for more details.
-              </p>
-            </div>
-          </div>
-          <div class="card-item">
-            <div class="card-image-container">
-              <img src="@/assets/images/river-walks.jpg" alt="eucalyptus" aria-hidden="true">
-            </div>
-            <div class="card-content">
-              <p class="card-title">Eucalyptus</p>
-              <p class="card-text">
-                500 acres of conservation projects.
-              </p>
-            </div>
-          </div>
+          <Card
+            v-for="(project, index) in filterDisplayData"
+            :key="index"
+            :item="project"
+            :staticImg="true"
+            imgDir="projects"/>
+        </div>
+        <div class="arr-nav-container">
+          <ArrowNavigation
+            @newPage ="setNewPage"
+            :pageNumber="page"
+            :isLastPage="checkIfLastPage" />
         </div>
       </div>
     </div>
@@ -90,7 +67,7 @@
             2,000 smallholders, with Clarke farm providing an end market.
           </p>
           <div class="contact-btn-container">
-            <a href="">Visit Us</a>
+            <a href="/visit">Contact Us</a>
           </div>
         </div>
         <div id="scheme-right">
@@ -102,8 +79,44 @@
 </template>
 
 <script>
+import Card from '@/components/shared/Card.vue';
+import ArrowNavigation from '@/components/shared/ArrowNavigation.vue';
+import SlideNavigation from '@/mixins/slide-navigation';
+import { mapState } from 'vuex';
+
 export default {
   name: 'AboutSection.vue',
+  data() {
+    return {
+      page: 1,
+    };
+  },
+  components: {
+    ArrowNavigation,
+    Card,
+  },
+  mixins: [SlideNavigation],
+  methods: {
+    setNewPage(page) {
+      this.page = page;
+    },
+  },
+  computed: {
+    ...mapState({
+      projects: (state) => state.projects.projects,
+    }),
+    filterDisplayData() {
+      const data = [...this.projects];
+      return this.filter(data);
+    },
+    checkIfLastPage() {
+      const data = [...this.projects];
+      if (this.page * this.limit >= data.length) {
+        return true;
+      }
+      return false;
+    },
+  },
 };
 </script>
 
@@ -230,39 +243,6 @@ export default {
     justify-content: start;
   }
 }
-.card-item{
-  min-width:290px;
-  max-width: 290px;
-  min-height: 320px;
-  background-color:white;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-@media screen and (max-width:1240px){
-  .card-item{
-    margin-right:20px;
-  }
-}
-
-.card-image-container{
-  height:190px;
-}
-.card-image-container img{
-  width:100%;
-  height:100%;
-  object-fit: cover;
-}
-.card-content{
-  margin-top: 5px;
-  padding-left: 10px;
-}
-
-.card-title{
-  font-weight: bold;
-}
-.card-text{
-  font-size: 14px;
-}
-
 .about-span {
   color: #068d68;
 }
@@ -371,5 +351,18 @@ img{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.arr-nav-container{
+  margin-top:40px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media screen and (min-width: 1280px) {
+  .arr-nav-container{
+    width:70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 </style>

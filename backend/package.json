@@ -2,7 +2,7 @@
   "name": "clarke-farm",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Marieh Musimenta, Mariat Ndagire, Jacob Nuwamanya, Mercy Wamanga, Stephen C. Mwanika",
+  "authors": "Marieh Musimenta, Mariat Ndagire, Jacob Nuwamanya, Mercy Wamanga, Stephen C. Mwanika",
   "license": "MIT",
   "scripts": {
     "start": "nodemon index.js"

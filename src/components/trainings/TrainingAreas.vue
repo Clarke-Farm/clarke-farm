@@ -2,14 +2,12 @@
   <div id="train-with-us">
     <p class="section-title">Why train with us</p>
     <p class="sub-text">
-      Wisdom is a product of knowledge and experience. Over the years, we have
-      acquired both through testing and trials. We will teach you how to manage a large
-      workforce, increase production and revenue. Below are our seasonal harvests.
+      Our production reflects our experience and knowledge.
     </p>
     <div id="capacity">
       <div class="stat-container">
         <div class="stat">
-          <div class="stat-num">700K</div>
+          <div class="stat-num">1M +</div>
           <div class="stat-text">KGs of coffee </div>
         </div>
         <div class="stat">
@@ -18,63 +16,77 @@
         </div>
         <div class="stat">
           <div class="stat-num">20K</div>
-          <div class="stat-text">KGs of Irish</div>
+          <div class="stat-text">KGs of Irish / ha</div>
         </div>
         <div class="stat">
-          <div class="stat-num">120 ha</div>
+          <div class="stat-num">60 ha</div>
           <div class="stat-text">Maize</div>
         </div>
         <div class="stat">
           <div class="stat-num">9 ha</div>
-          <div class="stat-text">Matooke</div>
+          <div class="stat-text">Matooke &amp; Vanilla</div>
         </div>
       </div>
     </div>
     <div id="training-programs">
-      <p class="section-sub-heading">Categories</p>
+      <p class="section-sub-heading">Training Categories</p>
       <div class="card-container">
-        <div class="card-item">
-          <div class="card-image-container">
-            <img src="@/assets/images/mother-garden.jpg" alt="coffee" aria-hidden="true">
-          </div>
-          <div class="card-content">
-            <p class="card-title">Coffee</p>
-            <p class="card-text">
-              Learn from our experts that manage 300+ acres of coffee.
-            </p>
-          </div>
-        </div>
-        <div class="card-item">
-          <div class="card-image-container">
-            <img src="@/assets/images/chickens.jpg" alt="chickens" aria-hidden="true">
-          </div>
-          <div class="card-content">
-            <p class="card-title">Chickens</p>
-            <p class="card-text">
-              With 10,000 chickens, we harvest 200 trays a day. Join us and learn
-              how we do it.
-            </p>
-          </div>
-        </div>
-        <div class="card-item">
-          <div class="card-image-container">
-            <img src="@/assets/images/irish.jpg" alt="irish" aria-hidden="true">
-          </div>
-          <div class="card-content">
-            <p class="card-title">Irish Potatoes</p>
-            <p class="card-text">
-              Learn how to select the best irish seedlings and how to take care of them.
-            </p>
-          </div>
-        </div>
+        <Card
+        v-for="(project, index) in filterDisplayData"
+        :key="index"
+        :item="project"
+        :staticImg="true"
+        imgDir="categories"/>
       </div>
+      <div class="arr-nav-container">
+          <ArrowNavigation
+            @newPage ="setNewPage"
+            :pageNumber="page"
+            :isLastPage="checkIfLastPage" />
+        </div>
     </div>
   </div>
 </template>
 
 <script>
+import Card from '@/components/shared/Card.vue';
+import ArrowNavigation from '@/components/shared/ArrowNavigation.vue';
+import SlideNavigation from '@/mixins/slide-navigation';
+import { mapState } from 'vuex';
+
 export default {
   name: 'TrainingAreas',
+  data() {
+    return {
+      page: 1,
+    };
+  },
+  components: {
+    ArrowNavigation,
+    Card,
+  },
+  mixins: [SlideNavigation],
+  methods: {
+    setNewPage(page) {
+      this.page = page;
+    },
+  },
+  computed: {
+    ...mapState({
+      projects: (state) => state.trainings.categories,
+    }),
+    filterDisplayData() {
+      const data = [...this.projects];
+      return this.filter(data);
+    },
+    checkIfLastPage() {
+      const data = [...this.projects];
+      if (this.page * this.limit >= data.length) {
+        return true;
+      }
+      return false;
+    },
+  },
 };
 </script>
 
@@ -197,38 +209,17 @@ export default {
     justify-content: start;
   }
 }
-.card-item{
-  min-width:290px;
-  max-width: 290px;
-  max-height: 320px;
-  background-color:white;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-  position:relative;
+.arr-nav-container{
+  margin-top:40px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
 }
-@media screen and (max-width:1240px){
-  .card-item{
-    margin-right:20px;
+@media screen and (min-width: 1280px) {
+  .arr-nav-container{
+    width:70%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
-.card-image-container{
-  height:190px;
-}
-.card-image-container img{
-  width:100%;
-  height:180px;
-  object-fit: cover;
-}
-.card-content{
-  margin-top: 5px;
-  padding-left: 10px;
-  height:130px;
-}
-.card-title{
-  font-weight: bold;
-}
-.card-text{
-  font-size: 14px;
-}
-
-/* End */
 </style>

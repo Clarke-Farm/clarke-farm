@@ -7,30 +7,30 @@
       </div>
       <div id="form-container">
         <p id="description">Register with us</p>
-        <form @submit.prevent="handleSubmitForm" action="/visitors/add">
+        <form @submit.prevent="handleSubmitForm">
           <div class="input-container">
-            <input type="text" name="name" placeholder="Name" v-model="visitor.name" required>
+            <input type="text" name="name" placeholder="Name" v-model="trainee.name" required>
           </div>
           <div class="input-container">
             <input type="email" placeholder="Email Address"
-             name="email" v-model="visitor.email" required>
+             name="email" v-model="trainee.email" required>
           </div>
           <div class="input-container">
             <input type="text" placeholder="Telephone"
-            name="telephone" v-model="visitor.phone" required>
+            name="telephone" v-model="trainee.phone" required>
           </div>
           <div class="input-container">
-            <input type="text" name="guestNumber"
-             placeholder="Group size" v-model="visitor.guestNumber" required>
+            <input type="text" name="groupsize"
+             placeholder="Group size" v-model="trainee.groupsize" required>
           </div>
           <div class="input-container">
             <input type="text" name="checkin"
-             placeholder="Visitation date" v-model="visitor.checkin" required
+             placeholder="Visitation date" v-model="trainee.checkin" required
             onfocus='(this.type="date")'>
              <input
               type="text"
               name="bookingtype"
-              v-model="visitor.bookingtype"
+              v-model="trainee.bookingtype"
               hidden
             />
           </div>
@@ -40,35 +40,35 @@
               <div class="checkbox-list">
                 <div class="checkbox-pair">
                   <span>
-                    <input type="checkbox" name="topics" value="coffee" v-model="topics"> Coffee
+                    <input type="checkbox" name="topics" value="coffee" v-model="trainee.topics"> Coffee
                   </span>
                   <span>
-                    <input type="checkbox" name="topics" value="matooke" v-model="topics"> Matooke
-                  </span>
-                </div>
-                <div class="checkbox-pair">
-                  <span>
-                    <input type="checkbox" name="topics" value="chicken" v-model="topics"> Chicken
-                  </span>
-                  <span>
-                    <input type="checkbox" name="topics" value="others" v-model="topics" > Others
+                    <input type="checkbox" name="topics" value="matooke" v-model="trainee.topics"> Matooke
                   </span>
                 </div>
                 <div class="checkbox-pair">
                   <span>
-                    <input type="checkbox" name="topics" value="irish" v-model="topics"> Irish
+                    <input type="checkbox" name="topics" value="chicken" v-model="trainee.topics"> Chicken
+                  </span>
+                  <span>
+                    <input type="checkbox" name="topics" value="others" v-model="trainee.topics" > Others
                   </span>
                 </div>
                 <div class="checkbox-pair">
                   <span>
-                    <input type="checkbox" name="topics" value="maize" v-model="topics"> Maize
+                    <input type="checkbox" name="topics" value="irish" v-model="trainee.topics"> Irish
+                  </span>
+                </div>
+                <div class="checkbox-pair">
+                  <span>
+                    <input type="checkbox" name="topics" value="maize" v-model="trainee.topics"> Maize
                   </span>
                 </div>
               </div>
             </fieldset>
 </div>
           <div class="submit-container">
-            <button class="submit">Submit</button>
+            <button class="submit" type="submit">Submit</button>
           </div>
         </form>
       </div>
@@ -77,18 +77,15 @@
 </template>
 
 <script>
-import axios from 'axios';
-
-const api = 'http://localhost:3000';
 export default {
   name: 'TrainingRegistration',
   data() {
     return {
-      visitor: {
+      trainee: {
         name: '',
         email: '',
         phone: '',
-        guestNumber: '',
+        groupsize: '',
         checkin: '',
         topics: [],
         bookingtype: 'Training',
@@ -97,18 +94,16 @@ export default {
   },
   methods: {
     async handleSubmitForm() {
-      const endpoint = '/visitors/add';
       try {
-        await axios.post(api + endpoint, this.visitor);
-        // this.$router.push('/admin');
-        this.visitor = {
+        await this.$store.dispatch('saveTrainee', this.trainee);
+        console.log(this.trainee);
+        this.trainee = {
           name: '',
           email: '',
           phone: '',
-          guestNumber: '',
-          date: '',
+          groupsize: '',
+          checkin: '',
           topics: [],
-          bookingtype: 'Training',
         };
         // Use sweetalert2
         this.$swal({

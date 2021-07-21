@@ -4,13 +4,16 @@
       v-for="(tab,index) in tabsList"
       :key="index"
       :class="['tab', selectedTab==tab?'active':'inactive']"
-      @click="selectedTab=tab">{{ tab }}</span>
+      @click="onTabSelected">{{ tab }}</span>
   </div>
 </template>
 
 <script>
 export default {
   name: 'TabMenu',
+  created() {
+    this.$emit('selected', this.selectedTab);
+  },
   props: {
     tabsList: {
       type: Array,
@@ -19,8 +22,14 @@ export default {
   },
   data() {
     return {
-      selectedTab: 'Activities',
+      selectedTab: this.tabsList[0],
     };
+  },
+  methods: {
+    onTabSelected(event) {
+      this.selectedTab = event.target.textContent;
+      this.$emit('selected', this.selectedTab);
+    },
   },
 };
 </script>

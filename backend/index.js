@@ -1,44 +1,42 @@
 // IMPORTING DEPENDENCIES
 require('dotenv').config();
 const express = require('express');
-const multer = require('multer');
-const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 const mongoose = require('mongoose');
 
 const app = express();
 app.use(cors());
 
-// SERVING STATIC FILES WITH MIDDLEWARE FUNCTION express.static
-app.use(express.static('uploads'));
-
-// STORE FOR UPLOADED FILES
-const storage = multer.diskStorage({
-  destination(req, file, callback) {
-    callback(null, './uploads');
-  },
-  filename(req, file, callback) {
-    callback(null, file.originalname);
-  },
-});
-
-const upload = multer({ storage }).single('file');
-
-// UPLOAD FILE
-app.post('/uploads', (req, res) => {
-  // eslint-disable-next-line consistent-return
-  upload(req, res, (err) => {
-    if (err) {
-      return res.end('file not uploaded');
-    }
-    res.end('uploaded file successfully');
-  });
-});
-
-// MANIPULATE DATABASE USING JSON
 app.use(express.json());
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, '/public')));
+app.use('/images', express.static(path.join(__dirname, '/uploads')));
+
+// APP ROUTES
+const visitorRouter = require('./Controllers/visitorRoutes');
+const activityRouter = require('./Controllers/activitiesRoutes');
+const accomodationRouter = require('./Controllers/accomodationsRoutes');
+const coffeeRouter = require('./Controllers/coffeeRoutes');
+const foodRouter = require('./Controllers/foodRoutes');
+const trainingRouter = require('./Controllers/trainingsRoutes');
+const tasksRouter = require('./Controllers/tasksRoutes');
+const traineeRouter = require('./Controllers/TraineeRoutes');
+const reviewRouter = require('./Controllers/reviewRoutes');
+
+app.use('/api/activities', activityRouter);
+app.use('/api/tasks', tasksRouter);
+app.use('/api/guests', visitorRouter);
+app.use('/api/trainings', trainingRouter);
+app.use('/api/coffee-orders', coffeeRouter);
+app.use('/api/trainees', traineeRouter);
+app.use('/api/accomodations', accomodationRouter);
+app.use('/api/foods', foodRouter);
+app.use('/api/reviews', reviewRouter);
+
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/index.html'));
+});
 
 // ESTABLISHING DATABASE CONNECTION
 mongoose.connect(process.env.DATABASE, {
@@ -55,30 +53,8 @@ mongoose.connection
     console.log(`Connection error: ${error.message}`);
   });
 
-// APP ROUTES
-const employeeRouter = require('./controllers/employeeRoutes');
-const visitorRouter = require('./controllers/visitorRoutes');
-const reviewRouter = require('./controllers/reviewRoutes');
-const activityRouter = require('./controllers/activityRoutes');
-const accommodationRouter = require('./controllers/accommodationRoutes');
-const coffeeProcessRouter = require('./controllers/coffeeProcessRoutes');
-const trainingRouter = require('./controllers/trainingRoutes');
-
-app.use(employeeRouter);
-app.use(visitorRouter);
-app.use(reviewRouter);
-app.use(activityRouter);
-app.use(accommodationRouter);
-app.use(coffeeProcessRouter);
-app.use(trainingRouter);
-
-// LOGOUT
-app.get('/logout', (req, res) => {
-  req.logout();
-  res.redirect('/');
-});
-
 // SERVER LISTENING TO REQUESTS
-app.listen(3000, () => {
-  console.log('listening on port 3000');
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server Running on port ${port}`);
 });
